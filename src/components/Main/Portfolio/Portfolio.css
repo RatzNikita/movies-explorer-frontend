@@ -1,0 +1,40 @@
+.portfolio {
+    background-color: #FFFFFF;
+    padding: 0 14px 60px;
+
+}
+
+.portfolio__title {
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+}
+
+.portfolio__subtitle {
+    margin: 0;
+    padding: 70px 0 40px;
+    color: #A0A0A0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.portfolio__project {
+    margin: 0;
+    padding: 15px 0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.portfolio__project-name {
+    margin: 0;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.72px;
+}
