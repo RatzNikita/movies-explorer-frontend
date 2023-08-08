@@ -1,18 +1,8 @@
 .portfolio {
-    background-color: #FFFFFF;
     padding: 0 14px 60px;
-
 }
 
-.portfolio__title {
-    color: #000;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: normal;
-    margin: 0;
-}
-
-.portfolio__subtitle {
+.portfolio__heading {
     margin: 0;
     padding: 70px 0 40px;
     color: #A0A0A0;
@@ -23,7 +13,7 @@
 
 .portfolio__project {
     margin: 0;
-    padding: 15px 0 10px;
+    padding: 8px 0 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -37,4 +27,25 @@
     font-weight: 400;
     line-height: 28px;
     letter-spacing: -0.72px;
+}
+
+.portfolio__arrow {
+    width: 11px;
+}
+
+@media (min-width: 768px) {
+    .portfolio {
+        padding: 0 50px 82px;
+    }
+    .portfolio__heading {
+        padding: 90px 0 50px;
+    }
+    .portfolio__project-name {
+        font-size: 28px;
+        line-height: 50px;
+        letter-spacing: -1.12px;
+    }
+    .portfolio__arrow {
+        width: 16px;
+    }
 }

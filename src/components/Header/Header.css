@@ -5,6 +5,11 @@
     justify-content: space-between;
     padding: 18px 14px;
     align-items: center;
+    background-color: #F3C1F8;
+}
+
+.header_color_pink {
+    background-color: #F3C1F8;
 }
 
 .header__logo {
@@ -35,3 +40,20 @@
     border-radius: 3px;
     background-color: black;
 }
+
+@media (min-width: 768px) {
+    .header {
+        padding: 18px 30px;
+    }
+    .header__button {
+        font-size: 12px;
+        line-height: 16px;
+        padding: 8px 20px;
+    }
+}
+@media (min-width: 1280px) {
+    .header {
+        padding: 18px 70px;
+    }
+}
+

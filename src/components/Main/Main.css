@@ -1,8 +1,8 @@
 .landing {
-    background-color: #F3C1F8;
+    background-color: white;
 }
 
-.landing__title {
+.landing__subtitle {
     margin: 0;
     padding: 56px 0 16px;
     font-size: 18px;
@@ -11,15 +11,26 @@
     letter-spacing: -0.72px;
 }
 
-.landing__subtitle {
+.landing__text {
     font-size: 11px;
     font-weight: 400;
     line-height: 16px;
+    max-width: 460px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.landing__divider {
-    margin: 0;
-    padding: 0;
-    min-height: 1px;
+
+
+@media (min-width: 768px) {
+    .landing__subtitle {
+        font-size: 23px;
+        letter-spacing: -0.88px;
+        padding-bottom: 11px;
+    }
+    .landing__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
 }
 
