@@ -1,4 +1,4 @@
-import './Login.css'
+
 import {Input} from "../Input/Input";
 import React from 'react'
 import {AuthForm} from "../Form/AuthForm";

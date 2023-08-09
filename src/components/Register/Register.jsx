@@ -1,4 +1,4 @@
-import './Register.css'
+
 import {Input} from "../Input/Input";
 import React from 'react'
 import {AuthForm} from "../Form/AuthForm";
@@ -16,7 +16,7 @@ export const Register = () => {
 
 
     return (
-            <section className='signup'>
+            <section>
                 <AuthForm type='signup' onSubmit={onFormSubmit} noValidate>
                     <Input minLength={2} maxLength={30} type='text' name='Имя' value={name}
                            onChange={(e) => setName(e.target.value)}/>

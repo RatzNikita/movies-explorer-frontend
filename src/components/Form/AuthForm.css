@@ -1,3 +1,9 @@
+.auth-form {
+    max-height: 780px;
+    max-width: 320px;
+    padding: 30px 30px;
+    margin: 0 auto;
+}
 .auth-form__logo {
     margin: 0 auto;
     width: 38px;
@@ -17,8 +23,6 @@
 }
 
 .auth-form__form-container {
-    max-width: 260px;
-
     display: block;
     margin: 0;
     padding: 0;
@@ -89,5 +93,32 @@
     cursor: pointer;
     color: #000000;
     margin-left: 7px;
+}
+
+@media (min-width: 768px) {
+    .auth-form{
+        max-height: 1024px;
+        max-width: 786px;
+        padding: 232px 186px
+    }
+    .auth-form__logo {
+        margin: 0;
+        padding: 0 0 40px;
+    }
+    .auth-form__heading {
+        text-align: start;
+    }
+    .auth-form__form {
+        max-width: 396px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .auth-form {
+        max-height: 700px;
+        max-width: 1280px;
+        padding: 70px 442px;
+
+    }
 }
 

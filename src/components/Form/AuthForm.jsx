@@ -26,9 +26,9 @@ export const AuthForm = ({children, onSubmit, type, ...props}) => {
 
 
     return (
-        <>
+        <section className='auth-form'>
             <img src={logo} alt='App logo' className='auth-form__logo'/>
-            <h2 className='auth-form__heading'>Добро пожаловать!</h2>
+            <h2 className='auth-form__heading'>{type === 'signup' ? 'Добро пожаловать!' : 'Рады видеть!'}</h2>
             <form onSubmit={handleSubmit} noValidate className='auth-form__form'>
                 <div className='auth-form__form-container'>
                     {children}
@@ -44,6 +44,6 @@ export const AuthForm = ({children, onSubmit, type, ...props}) => {
                             className='auth-form__button-caption auth-form__button-caption_style_link'>{type === 'signup' ? 'Войти' : 'Регистрация'}</button>
                 </div>
             </form>
-        </>
+        </section>
     )
 }

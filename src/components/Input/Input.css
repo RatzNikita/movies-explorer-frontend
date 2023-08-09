@@ -2,7 +2,7 @@
 .input__text {
     margin: 0;
     padding: 15px;
-    width: 230px;
+    width: 100%;
     border-radius: 8px;
     background: #F9F9F9;
     outline: none;
@@ -12,6 +12,7 @@
     font-size: 13px;
     font-weight: 500;
     line-height: normal;
+    box-sizing: border-box;
 }
 
 .input__text_color_red {
@@ -27,5 +28,10 @@
     line-height: normal;
 }
 
+@media (min-width: 768px) {
+    .input__text{
+        font-size: 13px;
+    }
+}
 
 

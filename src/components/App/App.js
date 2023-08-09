@@ -7,7 +7,6 @@ import {Login} from "../Login/Login";
 function App() {
     return (
         <div className="page">
-
             <Routes>
                 <Route path='/signup' element={<Register/>}/>
                 <Route path='/signin' element={<Login/>}/>
