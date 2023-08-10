@@ -1,0 +1,91 @@
+.navigation {
+    display: none;
+    width: 320px;
+    height: 780px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    padding: 144px 10px 48px;
+    box-sizing: border-box;
+}
+.navigation_visible {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation__link {
+    max-width: max-content;
+    color: #000;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    list-style: none;
+    padding: 7px;
+    border-bottom: 2px white solid;
+}
+.navigation__link_underlined {
+    border-bottom: 2px black solid;
+}
+
+
+.navigation__links {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.navigation__account {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 13px;
+    align-items: center;
+}
+
+.navigation__account-text {
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+.navigation__btn-account-container {
+    border-radius: 6px;
+    background: #F9F9F9;
+    max-height: 30px;
+    max-width: 30px;
+
+}
+
+.navigation__btn-account {
+    border: 0;
+    background: url("../../images/account.svg");
+    display: inline-block;
+    min-width: 11px;
+    height: 11px;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.navigation__btn-close {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: url('../../images/close.svg');
+    width: 32px;
+    height: 32px;
+}

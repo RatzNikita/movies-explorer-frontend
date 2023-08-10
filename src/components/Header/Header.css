@@ -5,7 +5,6 @@
     justify-content: space-between;
     padding: 18px 14px;
     align-items: center;
-    background-color: #F3C1F8;
 }
 
 .header_color_pink {
@@ -39,6 +38,13 @@
 .header__button_type_signin {
     border-radius: 3px;
     background-color: black;
+}
+.header__menu-btn {
+    background: url("../../images/menu.svg");
+    width: 40px;
+    height: 43px;
+    border: 0;
+
 }
 
 @media (min-width: 768px) {

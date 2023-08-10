@@ -1,4 +1,4 @@
-import tempAvatar from "../../../images/temp.jpg"
+import tempAvatar from "../../../images/temp-avatar.jpg"
 import './AboutMe.css'
 
 export const AboutMe = () => {

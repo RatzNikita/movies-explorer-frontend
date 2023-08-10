@@ -1,0 +1,53 @@
+.movie-card {
+display: grid;
+    position: relative;
+    grid-template-areas:
+            "img img img"
+            "title . caption";
+    list-style: none;
+    margin: 0;
+    gap: 16px 12px;
+    padding: 40px 0 0;
+}
+
+.movie-card__img {
+    border-radius: 6px;
+    grid-area: img;
+    max-width: 300px;
+    max-height: 168px;
+}
+
+.movie-card__title {
+    margin: 0;
+    grid-area: title;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.movie-card__caption {
+    grid-area: caption;
+    color: #A0A0A0;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 10px;
+    border-radius: 3px;
+    background: #F9F9F9;
+    padding: 3px 4px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.movie-card__save-btn {
+
+}
+
+.movie-card__save-btn_style_saved {
+
+}
+.movie-card__save-btn_style_remove {
+
+}
+

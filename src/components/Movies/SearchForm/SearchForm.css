@@ -1,0 +1,84 @@
+.search-form {
+    height: 272px;
+    box-sizing: border-box;
+    padding: 80px 14px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    justify-content: space-between;
+}
+
+.search-form__container {
+    border-radius: 9px;
+    border: 0;
+    background: #FDFDFD;
+    box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.08);
+    max-height: 72px;
+    padding: 25px 19px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.search-form__input {
+    border: 0;
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    outline: none;
+}
+
+.search-form__input::placeholder {
+    color: #A0A0A0;
+}
+
+.search-form__button {
+    border: none;
+    border-radius: 48px;
+    background: #000;
+    color: #FFF;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 18px;
+    padding: 8px 10px;
+    max-height: 34px;
+    margin: 0;
+}
+
+.search-form__switch-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.search-form__switch {
+    border: 0;
+    box-sizing: border-box;
+    background: url("../../../images/smalltumb.svg");
+    padding: 3px 1px;
+    width: 36px;
+    height: 20px;
+    transition: all 0.2s;
+}
+
+.search-form__switch_off {
+    background: url("../../../images/smalltumboff.svg");
+}
+
+.search-form__switch-caption {
+    margin: 0 0 0 14px;
+    color: #000;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 18px;
+}
+.search-form__divider {
+    margin: 0;
+    max-height: 1px;
+}
