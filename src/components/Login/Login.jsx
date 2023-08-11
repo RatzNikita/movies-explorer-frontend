@@ -1,7 +1,7 @@
 
 import {Input} from "../Input/Input";
 import React from 'react'
-import {AuthForm} from "../Form/AuthForm";
+import {AuthForm} from "../AuthForm/AuthForm";
 
 
 export const Login = () => {

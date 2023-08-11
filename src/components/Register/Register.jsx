@@ -1,7 +1,7 @@
 
 import {Input} from "../Input/Input";
 import React from 'react'
-import {AuthForm} from "../Form/AuthForm";
+import {AuthForm} from "../AuthForm/AuthForm";
 
 
 export const Register = () => {
@@ -18,10 +18,10 @@ export const Register = () => {
     return (
             <section>
                 <AuthForm type='signup' onSubmit={onFormSubmit} noValidate>
-                    <Input minLength={2} maxLength={30} type='text' name='Имя' value={name}
+                    <Input minLength={2} maxLength={30} type='text' name='Имя' value={name} required
                            onChange={(e) => setName(e.target.value)}/>
-                    <Input type='email' name='E-mail' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                    <Input minLength={2} maxLength={30} type='password' name='Пароль' value={password}
+                    <Input type='email' name='E-mail' value={email} required onChange={(e) => setEmail(e.target.value)}/>
+                    <Input minLength={2} maxLength={30} required type='password' name='Пароль' value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
                 </AuthForm>
             </section>
