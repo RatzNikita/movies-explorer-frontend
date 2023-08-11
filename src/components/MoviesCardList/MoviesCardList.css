@@ -6,6 +6,9 @@
 .movies-cards__list {
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -13,10 +16,12 @@
     .movies-cards {
         padding: 27px 30px 10px;
     }
+
     .movies-cards__list {
         display: grid;
         column-gap: 30px;
-        grid-template-columns: repeat(2,min-content);
+        grid-template-columns: repeat(2, min-content);
+        justify-content: center;
         padding: 0;
         margin: 0;
     }
@@ -24,9 +29,10 @@
 
 @media (min-width: 1280px) {
     .movies-cards {
-        padding: 15px 70px 28px;
+        padding: 12px 70px 28px;
     }
+
     .movies-cards__list {
-        grid-template-columns: repeat(3,min-content);
+        grid-template-columns: repeat(3, min-content);
     }
 }

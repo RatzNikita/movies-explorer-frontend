@@ -11,8 +11,8 @@ export const Input = ({name, onChange, ...props}) => {
     }
     return (
         <>
-            <label className='input__name'>{name}</label>
-            <input  className={`input__text ${!isValid && 'input__text_color_red'}`} onChange={handleChange} {...props}></input>
+            <label className='auth-form__input-name'>{name}</label>
+            <input className={`auth-form__input ${!isValid && 'auth-form__input_color_red'}`} onChange={handleChange} {...props}></input>
         </>
     )
 }

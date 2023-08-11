@@ -1,4 +1,12 @@
 .navigation {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background: rgba(0,0,0,0.30)
+}
+.navigation__container {
     width: 100%;
     max-width: 520px;
     height: 100vh;
@@ -13,15 +21,8 @@
     justify-content: space-between;
     align-items: center;
 }
-.navigation__cover {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    background: rgba(0,0,0,0.30)
-}
-.navigation__cover_visible {
+
+.navigation_visible {
     display: block;
 }
 
@@ -74,12 +75,12 @@
 }
 
 @media (min-width: 768px ) {
-    .navigation {
+    .navigation__container {
         max-height: 1024px;
     }
 }
 @media (min-width: 1280px ) {
-    .navigation__cover {
+    .navigation {
         display: none;
     }
 }

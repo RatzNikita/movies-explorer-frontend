@@ -14,18 +14,20 @@ export const AboutProject = () => {
                 </article>
                 <article className='about-project__info-item'>
                     <h2 className='landing__subtitle about-project__info-heading'>На выполнение диплома ушло 5 недель</h2>
-                    <p className='landing__text about-project__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
+                    <p className='landing__text about-project__text'>У каждого этапа был мягкий и жёсткий дедлайн,
+                        которые нужно было соблюдать, чтобы успешно защититься.</p>
                 </article>
             </div>
-            <div className='about-project__block'>
+            <div className='about-project__blocks'>
+            <div className='about-project__block about-project__block_size_medium'>
                 <figure className='about-project__figure about-project__figure_color_black'>1 неделя</figure>
                 <figcaption className='about-project__figure-caption'>Back-end</figcaption>
             </div>
-            <div className='about-project__block'>
+            <div className='about-project__block about-project__block_size_big'>
                 <figure className='about-project__figure about-project__figure_color_white'>4 недели</figure>
                 <figcaption className='about-project__figure-caption'>Front-end</figcaption>
             </div>
-
+            </div>
         </section>
     )
 }

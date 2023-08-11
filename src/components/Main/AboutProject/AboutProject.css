@@ -11,10 +11,20 @@
 .about-project__info-heading {
     padding: 58px 0 14px;
 }
-
 .about-project__block {
     margin: 60px 0;
     display: inline-block;
+    max-width: 100%;
+}
+.about-project__blocks {
+    display: grid;
+    grid-template-columns: 20fr 80fr;
+}
+.about-project__block_size_big {
+    min-width: 184px;
+}
+.about-project__block_size_medium {
+    min-width: 100px;
 }
 
 .about-project__figure {
@@ -25,16 +35,17 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    width: 100%;
 }
 
 .about-project__figure_color_white {
-    width: 184px;
+    min-width: 184px;
     background-color: #F2F2F2;
     color: black;
 }
 
 .about-project__figure_color_black {
-    width: 100px;
+    min-width: 100px;
     color: white;
     background-color: black;
 }
@@ -62,11 +73,11 @@
     .about-project__block {
         margin-top: 80px;
     }
-    .about-project__figure_color_black {
-        width: 140px;
+    .about-project__block_size_medium {
+        min-width: 140px;
     }
-    .about-project__figure_color_white {
-        width: 528px;
+    .about-project__block_size_big {
+        min-width: 528px;
     }
     .about-project__figure-caption{
         line-height: 17px;
@@ -100,6 +111,9 @@
     }
     .about-project__text {
         margin: 14px 0 0 0;
+        width: 100%;
+        text-align: start;
+        max-width: none;
     }
     .about-project__info-item {
         width: 550px;

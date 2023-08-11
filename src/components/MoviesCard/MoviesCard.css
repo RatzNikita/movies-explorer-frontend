@@ -109,6 +109,9 @@ display: grid;
 }
 @media (min-width: 1200px) {
     .movie-card {
+        padding: 57px 0 0;
+    }
+    .movie-card {
         gap: 12px 12px;
     }
     .movie-card__title {

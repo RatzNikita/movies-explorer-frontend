@@ -19,8 +19,8 @@ export const Navigation = ({visible = false}) => {
     }
 
     return (
-        <div className={`navigation__cover ${visible && 'navigation__cover_visible'}`}>
-            <nav className='navigation'>
+        <div className={`navigation ${visible ? 'navigation_visible' : ''}`}>
+            <nav className='navigation__container'>
                 <button className='navigation__btn-close' onClick={onClose}/>
                 <ul className='navigation__links'>
                     <li className={`navigation__link ${window.location.pathname === '/' && 'navigation__link_underlined'}`}

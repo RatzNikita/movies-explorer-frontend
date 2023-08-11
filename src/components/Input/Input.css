@@ -1,5 +1,5 @@
 
-.input__text {
+.auth-form__input {
     margin: 0;
     padding: 15px;
     width: 100%;
@@ -15,11 +15,11 @@
     box-sizing: border-box;
 }
 
-.input__text_color_red {
+.auth-form__input_color_red {
     color: #FF4062;
 }
 
-.input__name {
+.auth-form__input-name {
     display: block;
     padding: 20px 0 10px;
     color: #A0A0A0;
@@ -29,7 +29,7 @@
 }
 
 @media (min-width: 768px) {
-    .input__text{
+    .auth-form__input{
         font-size: 13px;
     }
 }

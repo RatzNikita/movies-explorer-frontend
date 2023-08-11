@@ -13,7 +13,7 @@ export const Profile = () => {
                     <p className='profile__text'>Имя</p>
                     <p className='profile__text'>Никита</p>
                 </div>
-                <div className='divider_color_grey profile__divider'></div>
+                <div className='profile__divider'></div>
                 <div className='profile__text-container'>
                     <p className='profile__text'>E-mail</p>
                     <p className='profile__text'>ratz.nikita@yandex.ru</p>
