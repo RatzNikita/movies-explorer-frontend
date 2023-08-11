@@ -1,3 +1,17 @@
 .movies {
     max-width: 320px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .movies {
+        max-width: 768px;
+    }
+}
+
+
+@media (min-width: 1280px) {
+    .movies {
+        max-width: 1280px;
+    }
 }

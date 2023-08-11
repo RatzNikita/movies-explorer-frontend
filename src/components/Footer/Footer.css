@@ -29,6 +29,10 @@
     font-weight: 400;
     line-height: normal;
     text-decoration: none;
+    transition: opacity .3s;
+}
+.footer__link:hover {
+    opacity: 0.7;
 }
 
 .footer__link:visited {
@@ -70,7 +74,9 @@
     .footer {
         padding: 20px 30px;
     }
-
+    .footer__divider {
+        margin-bottom: 20px;
+    }
     .footer__links {
         flex-direction: row;
         gap: 20px
@@ -91,5 +97,11 @@
     .footer__copyright {
         font-size: 13px;
         padding: 0;
+        color: #000;
+    }
+}
+@media (min-width: 1280px) {
+    .footer {
+        padding: 20px 70px;
     }
 }

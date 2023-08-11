@@ -14,3 +14,45 @@
 .divider_color_grey {
     border-bottom: 1px solid #E6E6E6;
 }
+
+.btn-account-container {
+    border-radius: 6px;
+    background: #F9F9F9;
+    max-height: 30px;
+    max-width: 30px;
+}
+.btn-account {
+    border: 0;
+    background: url("../../images/account.svg");
+    display: inline-block;
+    min-width: 11px;
+    height: 11px;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.account {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 13px;
+    align-items: center;
+    transition: opacity .3s;
+}
+
+.account:hover {
+    opacity: 0.8;
+}
+
+.account-text {
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}

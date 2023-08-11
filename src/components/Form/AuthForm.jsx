@@ -16,18 +16,15 @@ export const AuthForm = ({children, onSubmit, type, ...props}) => {
         }
     }
 
-    const toSignin = () => {
-        navigate('/signin', {replace: true})
-    }
 
-    const toSignUp = () => {
-        navigate('/signup', {replace: true})
+    const toRoute = (route) => {
+        navigate(route,{replace: true})
     }
 
 
     return (
         <section className='auth-form'>
-            <img src={logo} alt='App logo' className='auth-form__logo'/>
+            <img src={logo} alt='App logo' className='auth-form__logo' onClick={() => toRoute('/')}/>
             <h2 className='auth-form__heading'>{type === 'signup' ? 'Добро пожаловать!' : 'Рады видеть!'}</h2>
             <form onSubmit={handleSubmit} noValidate className='auth-form__form'>
                 <div className='auth-form__form-container'>
@@ -40,7 +37,7 @@ export const AuthForm = ({children, onSubmit, type, ...props}) => {
                     <button type='submit'
                             className='auth-form__button' {...props}>{type === 'signup' ? 'Зарегистрироваться' : 'Войти'}</button>
                     <p className='auth-form__button-caption'>{type === 'signup' ? 'Уже зарегистрированы?' : 'Ещё не зарегистрированы?'}</p>
-                    <button onClick={type === 'signup' ? toSignin : toSignUp}
+                    <button onClick={() => type === 'signup' ? toRoute('/signin') : toRoute('/signup')}
                             className='auth-form__button-caption auth-form__button-caption_style_link'>{type === 'signup' ? 'Войти' : 'Регистрация'}</button>
                 </div>
             </form>

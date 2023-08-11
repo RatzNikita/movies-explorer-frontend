@@ -5,6 +5,7 @@
     flex-direction: column;
     padding: 70px 30px 40px;
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .profile__greeting {
@@ -38,7 +39,7 @@
 }
 
 .profile__buttons-container {
-    margin: 380px 0 0;
+    margin: 210px 0 0;
     display: flex;
     gap: 16px;
     flex-direction: column;
@@ -58,5 +59,34 @@
 
 .profile__button_color_red {
     color: #FF4062;
+}
+
+@media (min-width: 768px) {
+    .profile {
+        width: 768px;
+        height: 950px;
+        padding: 236px 179px 269px;
+    }
+    .profile__greeting {
+        margin: 0;
+        padding: 0 0 96px;
+    }
+    .profile__button {
+        font-size: 13px;
+    }
+}
+@media (min-width: 1280px) {
+    .profile {
+        width: 1280px;
+        height: 700px;
+        padding: 74px 435px 70px;
+    }
+    .profile__greeting {
+        margin: 0;
+        padding: 0 0 123px;
+    }
+    .profile__buttons-container {
+        margin: 220px 0 0;
+    }
 }
 

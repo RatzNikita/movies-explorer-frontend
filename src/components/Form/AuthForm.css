@@ -1,7 +1,7 @@
 .auth-form {
     max-height: 780px;
-    max-width: 320px;
-    padding: 30px 30px;
+    max-width: 260px;
+    padding: 30px 0;
     margin: 0 auto;
 }
 .auth-form__logo {
@@ -10,6 +10,11 @@
     height: 38px;
     padding: 26px 0 50px;
     display: block;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+.auth-form__logo:hover {
+    opacity: 0.8;
 }
 
 .auth-form__form {
@@ -19,7 +24,7 @@
     justify-content: space-between;
     margin: 0;
     padding: 0;
-    height: 527px;
+    height: 517px;
 }
 
 .auth-form__form-container {
@@ -29,13 +34,14 @@
 }
 
 .auth-form__heading {
-    margin: 0;
     padding: 0 0 60px;
     color: #000;
     text-align: center;
     font-size: 24px;
     font-weight: 500;
     line-height: normal;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .auth-form__error {
@@ -70,7 +76,7 @@
     font-weight: 500;
     line-height: normal;
     width: 100%;
-
+    transition: background-color .3s;
 }
 
 .auth-form__button:hover {
@@ -84,6 +90,7 @@
     font-weight: 400;
     line-height: normal;
     display: inline-block;
+    margin-bottom: 0;
 }
 
 .auth-form__button-caption_style_link {
@@ -93,31 +100,47 @@
     cursor: pointer;
     color: #000000;
     margin-left: 7px;
+    transition: opacity .3s;
+}
+.auth-form__button-caption_style_link:hover {
+    opacity: 0.8;
 }
 
 @media (min-width: 768px) {
     .auth-form{
         max-height: 1024px;
-        max-width: 786px;
-        padding: 232px 186px
+        max-width: 396px;
+        padding: 232px 0;
     }
     .auth-form__logo {
         margin: 0;
         padding: 0 0 40px;
     }
+    .auth-form__button {
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
     .auth-form__heading {
         text-align: start;
+        padding: 0 0 22px;
     }
     .auth-form__form {
         max-width: 396px;
+        height: 430px;
+    }
+    .auth-form__button-caption {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
     }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 980px) {
     .auth-form {
         max-height: 700px;
-        max-width: 1280px;
-        padding: 70px 442px;
+        padding: 70px 0;
 
     }
 }

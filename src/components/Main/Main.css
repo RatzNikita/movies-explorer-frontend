@@ -24,7 +24,7 @@
 
 @media (min-width: 768px) {
     .landing__subtitle {
-        font-size: 23px;
+        font-size: 22px;
         letter-spacing: -0.88px;
         padding-bottom: 11px;
     }
@@ -34,3 +34,17 @@
     }
 }
 
+@media (min-width: 1280px) {
+    .landing__subtitle {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.8px;
+
+    }
+    .landing__text {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+}

@@ -5,7 +5,7 @@ export const AboutMe = () => {
 
     return (
         <section id='about-me' className='about-me'>
-            <h2 className='landing__subtitle'>Студент</h2>
+            <h2 className='landing__subtitle about-me__heading'>Студент</h2>
             <div className='divider'/>
             <div className='about-me__container'>
                 <img src={tempAvatar} alt='Ratz Nikita' className='about-me__photo'/>

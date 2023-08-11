@@ -72,18 +72,39 @@
         line-height: 17px;
         font-size: 14px;
     }
+    .about-project__info-heading {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.8px;
+        padding-bottom: 12px;
+    }
 }
 @media (min-width: 1280px) {
     .about-project {
-        padding: 54px 70px 50px;
+        padding: 54px 70px 40px;
     }
     .about-project__block {
-        margin-top: 90px
+        margin-top: 110px
     }
     .about-project__figure_color_black {
         width: 227px;
     }
     .about-project__figure_color_white {
         width: 913px;
+    }
+    .about-project__info-container {
+        display: grid;
+        grid-template-columns: repeat(2,550px);
+        gap: 40px;
+    }
+    .about-project__text {
+        margin: 14px 0 0 0;
+    }
+    .about-project__info-item {
+        width: 550px;
+    }
+    .about-project__figure-caption {
+        padding-top: 14px;
     }
 }

@@ -1,11 +1,13 @@
 .promo {
     background-color: #F3C1F8;
     width: 100%;
-    min-height: 570px;
+    height: 570px;
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
+    padding-bottom: 37px;
+    box-sizing: border-box;
 }
 
 .promo__logo {
@@ -28,6 +30,7 @@
 @media (min-width: 768px) {
     .promo {
         height: 784px;
+        padding-bottom: 20px;
     }
 
     .promo__title {
@@ -43,6 +46,10 @@
 
 @media (min-width: 1280px) {
     .promo {
-        height: 524px;
+        max-height: 524px;
+        padding-bottom:  45px;
+    }
+    .promo__title{
+        max-width: 730px;
     }
 }

@@ -8,7 +8,7 @@ export const Profile = () => {
         <>
             <Header/>
             <section className='profile'>
-                <h2 className='profile__greeting'>Привет, Никита</h2>
+                <h2 className='profile__greeting'>Привет, Никита!</h2>
                 <div className='profile__text-container'>
                     <p className='profile__text'>Имя</p>
                     <p className='profile__text'>Никита</p>

@@ -19,25 +19,28 @@ export const Navigation = ({visible = false}) => {
     }
 
     return (
-        <nav className={`navigation ${visible && 'navigation_visible'}`}>
-            <button className='navigation__btn-close' onClick={onClose}/>
-            <ul className='navigation__links'>
-                <li className={`navigation__link ${window.location.pathname === '/' && 'navigation__link_underlined'}`}
-                    onClick={() => toRoute('/')}>Главная
-                </li>
-                <li className={`navigation__link ${window.location.pathname === '/movies' && 'navigation__link_underlined'}`}
-                    onClick={() => toRoute('/movies')}>Фильмы</li>
-                <li className={`navigation__link ${window.location.pathname === '/saved-movies' && 'navigation__link_underlined'}`}
-                    onClick={() => toRoute('/saved-movies')}>Сохранённые
-                    фильмы
-                </li>
-            </ul>
-            <div className='navigation__account'>
-                <p className='navigation__account-text'>Аккаунт</p>
-                <div className='navigation__btn-account-container'>
-                    <button className='navigation__btn-account' onClick={() => toRoute('/profile')}/>
+        <div className={`navigation__cover ${visible && 'navigation__cover_visible'}`}>
+            <nav className='navigation'>
+                <button className='navigation__btn-close' onClick={onClose}/>
+                <ul className='navigation__links'>
+                    <li className={`navigation__link ${window.location.pathname === '/' && 'navigation__link_underlined'}`}
+                        onClick={() => toRoute('/')}>Главная
+                    </li>
+                    <li className={`navigation__link ${window.location.pathname === '/movies' && 'navigation__link_underlined'}`}
+                        onClick={() => toRoute('/movies')}>Фильмы</li>
+                    <li className={`navigation__link ${window.location.pathname === '/saved-movies' && 'navigation__link_underlined'}`}
+                        onClick={() => toRoute('/saved-movies')}>Сохранённые
+                        фильмы
+                    </li>
+                </ul>
+                <div className='account' onClick={() => toRoute('/profile')}>
+                    <p className='account-text'>Аккаунт</p>
+                    <div className='btn-account-container'>
+                        <button className='btn-account' />
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
+
     )
 }

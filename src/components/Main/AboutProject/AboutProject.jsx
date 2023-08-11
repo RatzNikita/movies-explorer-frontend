@@ -9,13 +9,12 @@ export const AboutProject = () => {
             <div className='about-project__info-container'>
                 <article className='about-project__info-item'>
                     <h2 className='landing__subtitle about-project__info-heading'>Дипломный проект включал 5 этапов</h2>
-                    <p className='landing__text'>Составление плана, работу над бэкендом, вёрстку, добавление
+                    <p className='landing__text about-project__text'>Составление плана, работу над бэкендом, вёрстку, добавление
                         функциональности и финальные доработки.</p>
                 </article>
                 <article className='about-project__info-item'>
                     <h2 className='landing__subtitle about-project__info-heading'>На выполнение диплома ушло 5 недель</h2>
-                    <p className='landing__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
-                        соблюдать, чтобы успешно защититься.</p>
+                    <p className='landing__text about-project__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
                 </article>
             </div>
             <div className='about-project__block'>

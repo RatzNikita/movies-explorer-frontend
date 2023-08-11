@@ -11,29 +11,38 @@ export const Header = () => {
 
     const navigate = useNavigate();
 
-    const toRegister = () => {
-        navigate('/signup', {replace: true})
+    const toRoute = (route) => {
+        setNavIsVisible(false)
+        navigate(route, {replace: true})
     }
-
-    const toLogin = () => {
-        navigate('/signin', {replace: true})
-    }
-
-
 
     return (
         <header className={`header ${window.location.pathname === '/' && 'header_color_pink'}`}>
-            <img src={logo} alt='App logo' className='header__logo'/>
+            <img src={logo} alt='App logo' className='header__logo' onClick={() => toRoute('/')}/>
             {window.location.pathname === '/'
                 ? <div className='header__auth-bar'>
                     <button type='button' className='header__button header__button_type_signup'
-                            onClick={toRegister}>Регистрация
+                            onClick={() => toRoute('/signup')}>Регистрация
                     </button>
                     <button type='button' className='header__button header__button_type_signin'
-                            onClick={toLogin}>Войти
+                            onClick={() => toRoute('/signin')}>Войти
                     </button>
                 </div>
-                : <button className='header__menu-btn' onClick={() => setNavIsVisible(true)}/>
+                : <>
+                     <nav className='header__navigation'>
+                        <div className='header__navigation-buttons'>
+                            <button className='header__navigation-button' onClick={() => toRoute('/movies')}>Фильмы</button>
+                            <button className='header__navigation-button' onClick={() => toRoute('/saved-movies')}>Сохранённые фильмы</button>
+                        </div>
+                        <div className='account' onClick={() => toRoute('/profile')}>
+                            <p className='account-text'>Аккаунт</p>
+                            <div className='btn-account-container'>
+                                <button className='btn-account'/>
+                            </div>
+                        </div>
+                    </nav>
+                <button className='header__menu-btn' onClick={() => setNavIsVisible(true)}/>
+                </>
             }
         </header>
     )

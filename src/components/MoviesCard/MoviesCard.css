@@ -6,15 +6,21 @@ display: grid;
             "title . caption";
     list-style: none;
     margin: 0;
-    gap: 16px 12px;
-    padding: 40px 0 0;
+    gap: 14px 12px;
+    padding: 36px 0 0;
+    max-width: 300px;
 }
 
 .movie-card__img {
     border-radius: 6px;
-    grid-area: img;
     max-width: 300px;
     max-height: 168px;
+}
+.movie-card__img-container {
+    grid-area: img;
+    padding: 0;
+    margin: 0;
+    position: relative;
 }
 
 .movie-card__title {
@@ -40,14 +46,82 @@ display: grid;
     margin: 0;
 }
 
-.movie-card__save-btn {
-
+.movie-card__btn {
+    position: absolute;
+    border: none;
+    top: 8px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: scale .2s;
+}
+.movie-card__btn:hover {
+    transform: scale(1.1);
 }
 
-.movie-card__save-btn_style_saved {
-
+.movie-card__btn_style_save {
+    color: #000;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    border-radius: 30px;
+    background: #F9F9F9;
+    padding: 6px 9px;
+    line-height: 9px;
 }
-.movie-card__save-btn_style_remove {
 
+.movie-card__btn_style_saved {
+    background: url("../../images/saved.svg");
+    cursor: default;
+    width: 21px;
+    height: 21px;
+}
+.movie-card__btn_style_saved:hover {
+    transform: none;
+}
+.movie-card__btn_style_remove {
+    background: url("../../images/remove.svg");
+    width: 21px;
+    height: 21px;
+}
+
+@media (min-width: 768px) {
+    .movie-card {
+        padding: 43px 0 0;
+        max-width: 768px;
+        gap: 25px 12px;
+    }
+
+    .movie-card__img {
+        max-width: 340px;
+        max-height: 190px;
+    }
+
+    .movie-card__title {
+        font-size: 13px;
+    }
+
+    .movie-card__btn {
+        top: 14px;
+        right: 14px;
+    }
+}
+@media (min-width: 1200px) {
+    .movie-card {
+        gap: 12px 12px;
+    }
+    .movie-card__title {
+        font-size: 14px;
+        margin-left: 14px;
+    }
+    .movie-card__caption {
+        margin-right: 14px;
+    }
+    .movie-card__img {
+        max-width: 360px;
+        width: 360px;
+        max-height: 201px;
+    }
 }
 
