@@ -16,6 +16,7 @@ function App() {
 
     const [navIsVisible, setNavIsVisible] = React.useState(false)
 
+
     return (
         <div className="page">
             <AppContext.Provider value={{navIsVisible, setNavIsVisible}}>

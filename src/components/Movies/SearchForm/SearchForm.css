@@ -81,22 +81,22 @@
 }
 
 .search-form__switch {
+    appearance: none;
     border: 0;
     box-sizing: border-box;
-    background: url("../../../images/smalltumb.svg");
+    background: url("../../../images/smalltumboff.svg");
     padding: 3px 1px;
     width: 36px;
     height: 20px;
     transition: all 0.2s;
+}
 
+.search-form__switch:checked {
+    background-image: url("../../../images/smalltumb.svg");
 }
 
 .search-form__switch:hover {
     transform: scale(1.1);
-}
-
-.search-form__switch_off {
-    background: url("../../../images/smalltumboff.svg");
 }
 
 .search-form__switch-caption {
@@ -122,6 +122,7 @@
         display: none;
 
     }
+
     .search-form__search-icon {
         display: block;
 
@@ -145,10 +146,12 @@
         line-height: 20px;
         padding-left: 10px;
     }
+
     .search-form__container {
         padding: 25px 20px;
         margin: 0;
     }
+
     .search-form__switch-container_inline {
         padding: 9px 0 9px 20px;
     }
@@ -161,9 +164,11 @@
         max-width: 1280px;
         padding: 70px 70px 10px;
     }
+
     .search-form__container {
         padding: 25px 30px 25px 20px;
     }
+
     .search-form__switch-container_inline {
         padding: 9px 0 9px 29px;
     }

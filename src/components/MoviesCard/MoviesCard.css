@@ -3,16 +3,20 @@ display: grid;
     position: relative;
     grid-template-areas:
             "img img img"
-            "title . caption";
+            "title title caption";
+    grid-template-rows: max-content 32px;
     list-style: none;
     margin: 0;
     gap: 14px 12px;
-    padding: 36px 0 0;
+    padding: 20px 0 0;
     max-width: 300px;
+    box-sizing: border-box;
 }
 
 .movie-card__img {
     border-radius: 6px;
+    min-width: 300px;
+    min-height: 168px;
     max-width: 300px;
     max-height: 168px;
 }
@@ -44,6 +48,9 @@ display: grid;
     padding: 3px 4px;
     box-sizing: border-box;
     margin: 0;
+    max-height: 18px;
+    max-width: 45px;
+    justify-self: end;
 }
 
 .movie-card__btn {
@@ -88,14 +95,14 @@ display: grid;
 
 @media (min-width: 768px) {
     .movie-card {
-        padding: 43px 0 0;
+        padding: 28px 0 0;
         max-width: 768px;
         gap: 25px 12px;
     }
 
     .movie-card__img {
-        max-width: 340px;
-        max-height: 190px;
+        min-width: 340px;
+        min-height: 190px;
     }
 
     .movie-card__title {
@@ -109,7 +116,7 @@ display: grid;
 }
 @media (min-width: 1200px) {
     .movie-card {
-        padding: 57px 0 0;
+        padding: 43px 0 0;
     }
     .movie-card {
         gap: 12px 12px;
@@ -122,9 +129,9 @@ display: grid;
         margin-right: 14px;
     }
     .movie-card__img {
-        max-width: 360px;
+        min-width: 360px;
         width: 360px;
-        max-height: 201px;
+        min-height: 201px;
     }
 }
 
