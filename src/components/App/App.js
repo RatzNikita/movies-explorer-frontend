@@ -24,15 +24,6 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState({})
     const navigate = useNavigate();
 
-    const handleUpdateUser = ({name, email}) => {
-        isLoading(true)
-        api.setUserInfo(name, email)
-            .then(user => {
-                setCurrentUser(user)
-            })
-            .catch(err => console.log(err))
-            .finally(() => isLoading(false))
-    }
 
     const handleLogin = () => {
         setLoggedIn(true)
@@ -71,7 +62,7 @@ function App() {
     return (
         <div className="page">
             <AppContext.Provider value={{navIsVisible, setNavIsVisible}}>
-                <CurrentUserContext.Provider value={currentUser}>
+                <CurrentUserContext.Provider value={{currentUser,setCurrentUser}}>
                     <Routes>
                         <Route path='/signup' element={<Register/>}/>
                         <Route path='/signin' element={<Login handleLogin={handleLogin}/>}/>

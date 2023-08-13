@@ -53,9 +53,10 @@ class Api {
             })
     }
 
-    setUserInfo(name, email) {
+    setUserInfo({name, email}) {
+        console.log(name,email)
         return fetch(`${this._options.baseUrl}/users/me`, {
-            method: 'PATCH', headers: this._options.headers, body: JSON.stringify(name, email)
+            method: 'PATCH', headers: this._options.headers, body: JSON.stringify({name, email})
         })
             .then(res => {
                 return this._checkStatus(res)
