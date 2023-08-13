@@ -17,7 +17,6 @@ export const Preloader = ({queryIsEmpty}) => {
         setCounterFilms,
         films,
         onlyShorts,
-        filteredFilms,
         showedFilms,
         counterFilms,
         searchQuery,
@@ -52,12 +51,8 @@ export const Preloader = ({queryIsEmpty}) => {
         }
     }
 
-
-    console.log(canLoad)
     const checkCount = () => {
-        console.log('showed films =>', showedFilms)
-        console.log('counterFilms =>', counterFilms)
-        if (onlyShorts) {
+        if (!onlyShorts) {
             if (films.length > counterFilms) {
                 return (
                     <button className='preloader__button'
@@ -65,7 +60,7 @@ export const Preloader = ({queryIsEmpty}) => {
                 )
             }
         } else {
-            if (filteredFilms.length > counterFilms) {
+            if (films.filter(f => f.duration < 40).length > counterFilms) {
                 return (
                     <button className='preloader__button'
                             onClick={uploadFilms}>{'Ещё'}</button>

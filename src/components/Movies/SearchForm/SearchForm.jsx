@@ -1,21 +1,23 @@
 import './SearchForm.css'
 import React from "react";
-import {MoviesContext} from "../../context/MoviesContext";
+import {search} from "../Movies";
 
 
-export const SearchForm = ({onMoviesSearch}) => {
+export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
 
-    const {setOnlyShorts} = React.useContext(MoviesContext)
-    const [formState, setFormState] = React.useState({search: '', shorts: false})
+    const [formState, setFormState] = React.useState({search: ''})
 
     React.useEffect(() => {
         if (window.location.pathname === '/movies') {
+            if(search) {
+                setFormState({search: search})
+            }
         }
     }, []);
 
-    const onSwitch = (e) => {
-        setFormState({...formState, shorts: e.target.checked})
-        setOnlyShorts(formState.shorts)
+    const handleSwitch = (e) => {
+        setOnlyShorts(e.target.checked)
+        localStorage.setItem('shorts',JSON.stringify(e.target.checked))
     }
 
     const onInputChange = (e) => {
@@ -38,15 +40,15 @@ export const SearchForm = ({onMoviesSearch}) => {
                        onChange={onInputChange}></input>
                 <button className='search-form__button' onClick={handleSearch}>Найти</button>
                 <div className='search-form__switch-container search-form__switch-container_inline'>
-                    <input type='checkbox' name='shorts' className='search-form__switch' checked={formState.shorts}
-                           onChange={onSwitch}/>
+                    <input type='checkbox'  className='search-form__switch' checked={onlyShorts}
+                           onChange={handleSwitch}/>
                     <p className='search-form__switch-caption'>Короткометражки</p>
                 </div>
             </form>
             <div className='search-form__switch-container'>
-                <input type='checkbox' name='shorts' className='search-form__switch'
-                       checked={formState['shorts']}
-                       onChange={onSwitch}/>
+                <input type='checkbox'  className='search-form__switch'
+                       checked={onlyShorts}
+                       onChange={handleSwitch}/>
                 <p className='search-form__switch-caption'>Короткометражки</p>
             </div>
             <div className='divider divider_color_grey search-form__divider'/>

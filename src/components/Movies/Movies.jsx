@@ -27,17 +27,15 @@ const Movies = () => {
     const [onlyShorts, setOnlyShorts] = React.useState(shorts ? shorts : false)
     const [counterFilms, setCounterFilms] = React.useState(showCards())
     const [films, setFilms] = React.useState(stateFilms ? stateFilms : [])
-    const [filteredFilms, setFilteredFilms] = React.useState([]);
     const [showedFilms, setShowedFilms] = React.useState()
     const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(() => {
         if (films) {
             if (onlyShorts) {
-                setShowedFilms(films.slice(0, counterFilms))
+                setShowedFilms(films.filter(film => film.duration <= 40).slice(0, counterFilms))
             } else {
-                setFilteredFilms(films.filter(film => film.duration <= 40));
-                setShowedFilms(filteredFilms.slice(0, counterFilms))
+                setShowedFilms(films.slice(0, counterFilms))
             }
         }
     }, [films, counterFilms, onlyShorts])
@@ -50,18 +48,10 @@ const Movies = () => {
         const initialMovies = await moviesApi.getMovies().catch(error => console.log(error))
         const movies = initialMovies.filter(movie => movie.nameRU.toLowerCase().includes(options.search.toLowerCase())
             || movie.nameEN.toLowerCase().includes(options.search.toLowerCase()))
+        localStorage.setItem('search', JSON.stringify(options.search))
         localStorage.setItem('films', JSON.stringify(movies))
         setFilms(movies)
         setIsLoading(false)
-
-    }
-
-    const saveState = () => {
-        localStorage.setItem('state', JSON.stringify({
-            films: films,
-            search: searchQuery,
-            shorts: onlyShorts,
-        }))
     }
 
     return (
@@ -70,14 +60,13 @@ const Movies = () => {
                 setCounterFilms,
                 films,
                 onlyShorts,
-                filteredFilms,
                 showedFilms,
                 counterFilms,
                 searchQuery,
                 isLoading,
                 setOnlyShorts
             }}>
-                <SearchForm onMoviesSearch={onMoviesSearch}/>
+                <SearchForm onMoviesSearch={onMoviesSearch} setOnlyShorts={setOnlyShorts} onlyShorts={onlyShorts}/>
                 <MoviesCardList/>
                 <Preloader queryIsEmpty={!searchQuery}/>
 
