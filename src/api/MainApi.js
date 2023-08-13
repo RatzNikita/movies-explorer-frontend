@@ -9,7 +9,7 @@ class Api {
             body: JSON.stringify(userInfo)
         })
             .then(res => {
-                return this._checkStatus(res)
+               return this._checkStatus(res)
             })
     }
 
@@ -20,7 +20,12 @@ class Api {
         })
             .then(res => {
                 return this._checkStatus(res)
-            }).then(token => this.setToken(token))
+            }).then((data) => {
+                if (data.token){
+                    localStorage.setItem('token', data.token);
+                    return data;
+                }
+            })
     }
 
     getUserInfo() {
@@ -50,17 +55,26 @@ class Api {
 
     setUserInfo(name, email) {
         return fetch(`${this._options.baseUrl}/users/me`, {
-            method: 'PATCH', headers: this._options.headers, body: JSON.stringify(name,email)
+            method: 'PATCH', headers: this._options.headers, body: JSON.stringify(name, email)
         })
             .then(res => {
                 return this._checkStatus(res)
             })
     }
 
+    checkToken(token) {
+        return fetch(`${this._options.baseUrl}/users/me`, {
+            method: 'GET',
+            headers: this._options.headers
+        })
+            .then(res => this._checkStatus(res))
+    }
+
 
     _checkStatus(res) {
-        return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+        return res.ok ? res.json() : Promise.reject(res.status);
     }
+
 
     setToken(token) {
         this._options.headers.authorization = `Bearer ${token}`
@@ -69,6 +83,8 @@ class Api {
 
 export const api = new Api({
     baseUrl: 'https://api.ratz-movies-search.nomoreparties.co', headers: {
-        authorization: 'Bearer ' + localStorage.getItem('token'), 'Content-Type': 'application/json'
+        authorization: 'Bearer ' + localStorage.getItem('token'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     }
 });

@@ -3,7 +3,7 @@ import './AuthForm.css'
 import logo from "../../images/logo.svg";
 import {useNavigate} from "react-router-dom";
 
-export const AuthForm = ({children, onSubmit, type, ...props}) => {
+export const AuthForm = ({children, onSubmit,error, type, ...props}) => {
     const [formValid, setFormValid] = React.useState(true)
 
     const navigate = useNavigate()
@@ -33,6 +33,7 @@ export const AuthForm = ({children, onSubmit, type, ...props}) => {
                         так...</p>
 
                 </div>
+                <p align='center' className={`auth-form__error ${error ? 'auth-form__error_visible' : ''}`}>{error}</p>
                 <div className='auth-form__button-container'>
                     <button type='submit'
                             className='auth-form__button' {...props}>{type === 'signup' ? 'Зарегистрироваться' : 'Войти'}</button>

@@ -1,29 +1,49 @@
-
 import {Input} from "../Input/Input";
 import React from 'react'
 import {AuthForm} from "../AuthForm/AuthForm";
+import {api} from "../../api/MainApi";
+import {useNavigate} from "react-router-dom";
 
 
 export const Register = () => {
 
-    const [name, setName] = React.useState('')
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
+    const [formValue, setFormValue] = React.useState({
+        name: '',
+        email: '',
+        password: '',
+    })
+    const [error, setError] = React.useState(null)
+    const navigate = useNavigate();
 
-    const onFormSubmit = (e) => {
-       console.log(e.target.elements)
+    const onFormSubmit = async () => {
+        await api.signUp(formValue)
+            .then(res => {
+                navigate('/signin',{replace: true})
+            }).catch(error => {
+                console.log(error)
+                if (error === 409) {
+                    setError('Пользователь с таким email уже существует')
+                    return;
+                }
+                setError('При регистрации пользователя произошла ошибка')
+            })
+    }
+
+    const setValue = (e) => {
+        setFormValue({...formValue, [e.target.name]: e.target.value})
     }
 
 
     return (
-            <section>
-                <AuthForm type='signup' onSubmit={onFormSubmit} noValidate>
-                    <Input minLength={2} maxLength={30} type='text' name='Имя' value={name} required
-                           onChange={(e) => setName(e.target.value)}/>
-                    <Input type='email' name='E-mail' value={email} required onChange={(e) => setEmail(e.target.value)}/>
-                    <Input minLength={2} maxLength={30} required type='password' name='Пароль' value={password}
-                           onChange={(e) => setPassword(e.target.value)}/>
-                </AuthForm>
-            </section>
+        <section>
+            <AuthForm error={error} type='signup' onSubmit={onFormSubmit} noValidate>
+                <Input name='name' minLength={2} maxLength={30} type='text' label='Имя' value={formValue.name} required
+                       onChange={setValue}/>
+                <Input type='email' name='email' label='E-mail' value={formValue.email} required onChange={setValue}/>
+                <Input minLength={2} maxLength={30} name='password' required type='password' label='Пароль'
+                       value={formValue.password}
+                       onChange={setValue}/>
+            </AuthForm>
+        </section>
     )
 }
