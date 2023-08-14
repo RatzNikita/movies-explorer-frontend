@@ -1,19 +1,21 @@
 import './SearchForm.css'
 import React from "react";
-import {search} from "../Movies";
+import {search} from "../../../utils/helpFunctions";
 
 
 export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
 
     const [formState, setFormState] = React.useState({search: ''})
+    const [error,setError] = React.useState(false)
 
     React.useEffect(() => {
         if (window.location.pathname === '/movies') {
-            if(search) {
-                setFormState({search: search})
+            if(search()) {
+                setFormState({search: search()})
             }
         }
     }, []);
+
 
     const handleSwitch = (e) => {
         setOnlyShorts(e.target.checked)
@@ -21,6 +23,7 @@ export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
     }
 
     const onInputChange = (e) => {
+        setError(false)
         setFormState({...formState, search: e.target.value})
     }
 
@@ -28,6 +31,8 @@ export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
         e.preventDefault();
         if (formState.search) {
             onMoviesSearch(formState)
+        } else {
+            setError(true)
         }
     }
 
@@ -44,6 +49,7 @@ export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
                            onChange={handleSwitch}/>
                     <p className='search-form__switch-caption'>Короткометражки</p>
                 </div>
+                {error && <p className='search-form__error'>Нужно ввести ключевое слово</p>}
             </form>
             <div className='search-form__switch-container'>
                 <input type='checkbox'  className='search-form__switch'

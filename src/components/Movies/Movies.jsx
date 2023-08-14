@@ -1,78 +1,61 @@
 import './Movies.css'
-import withLayout from "../../utils/withLayout/withLayout";
+import withLayout from "../../hoc/withLayout/withLayout";
 import {SearchForm} from "./SearchForm/SearchForm";
 import {MoviesCardList} from "../MoviesCardList/MoviesCardList";
 import {Preloader} from "./Preloader/Preloader";
 import React from "react";
 import {moviesApi} from "../../api/MoviesApi";
-import {MoviesContext} from "../context/MoviesContext";
-
-const showCards = () => {
-    const width = window.innerWidth
-    if (width >= 1280) {
-        return 12;
-    } else if (width >= 768) {
-        return 8;
-    } else {
-        return 5;
-    }
-}
-
-export const search = JSON.parse(localStorage.getItem('search'))
-export const shorts = JSON.parse(localStorage.getItem('shorts'))
-export const stateFilms = JSON.parse(localStorage.getItem('films'))
+import {getSavedFilms, search, searchByName, shorts, showCards, stateFilms} from "../../utils/helpFunctions";
+import withProtect from "../../hoc/withProtect/withProtect";
 
 const Movies = () => {
-    const [searchQuery, setSearchQuery] = React.useState(search ? search : '')
-    const [onlyShorts, setOnlyShorts] = React.useState(shorts ? shorts : false)
-    const [counterFilms, setCounterFilms] = React.useState(showCards())
-    const [films, setFilms] = React.useState(stateFilms ? stateFilms : [])
-    const [showedFilms, setShowedFilms] = React.useState()
+
+    const [searchQuery, setSearchQuery] = React.useState(search() ? search() : '')
+    const [onlyShorts, setOnlyShorts] = React.useState(shorts() ? shorts() : false)
+    const [filmsOnPage, setFilmsOnPage] = React.useState(showCards())
+    const [unfilteredFilms, setUnfilteredFilms] = React.useState(stateFilms() ? stateFilms() : [])
+    const [filteredFilms, setFilteredFilms] = React.useState()
     const [isLoading, setIsLoading] = React.useState(false);
+    const [error, setError] = React.useState(false)
 
     React.useEffect(() => {
-        if (films) {
+        if (unfilteredFilms) {
             if (onlyShorts) {
-                setShowedFilms(films.filter(film => film.duration <= 40).slice(0, counterFilms))
+                setFilteredFilms(unfilteredFilms.filter(film => film.duration <= 40).slice(0, filmsOnPage))
             } else {
-                setShowedFilms(films.slice(0, counterFilms))
+                setFilteredFilms(unfilteredFilms.slice(0, filmsOnPage))
             }
         }
-    }, [films, counterFilms, onlyShorts])
+    }, [unfilteredFilms, filmsOnPage, onlyShorts])
 
-
-    const onMoviesSearch = async (options) => {
+    const onMoviesSearch = async ({search}) => {
+        setError(false)
+        setUnfilteredFilms([])
         setIsLoading(true)
-        setCounterFilms(showCards())
-        setSearchQuery(options.search)
-        const initialMovies = await moviesApi.getMovies().catch(error => console.log(error))
-        const movies = initialMovies.filter(movie => movie.nameRU.toLowerCase().includes(options.search.toLowerCase())
-            || movie.nameEN.toLowerCase().includes(options.search.toLowerCase()))
-        localStorage.setItem('search', JSON.stringify(options.search))
-        localStorage.setItem('films', JSON.stringify(movies))
-        setFilms(movies)
+        setFilmsOnPage(showCards())
+        setSearchQuery(search)
+        const initialMovies = await moviesApi
+            .getMovies()
+            .catch(() => setError(true))
+        if (initialMovies?.length > 0) {
+            const movies = initialMovies.filter(movie => searchByName(movie, search))
+            localStorage.setItem('search', JSON.stringify(search))
+            localStorage.setItem('films', JSON.stringify(movies))
+            const filteredFilms = await getSavedFilms(movies);
+            setUnfilteredFilms(filteredFilms)
+        }
         setIsLoading(false)
     }
 
     return (
         <main className='movies'>
-            <MoviesContext.Provider value={{
-                setCounterFilms,
-                films,
-                onlyShorts,
-                showedFilms,
-                counterFilms,
-                searchQuery,
-                isLoading,
-                setOnlyShorts
-            }}>
-                <SearchForm onMoviesSearch={onMoviesSearch} setOnlyShorts={setOnlyShorts} onlyShorts={onlyShorts}/>
-                <MoviesCardList/>
-                <Preloader queryIsEmpty={!searchQuery}/>
-
-            </MoviesContext.Provider>
+            <SearchForm onMoviesSearch={onMoviesSearch} setOnlyShorts={setOnlyShorts} onlyShorts={onlyShorts} key={1}/>
+            <MoviesCardList movies={filteredFilms} error={error}/>
+            <Preloader queryIsEmpty={!searchQuery} onlyShorts={onlyShorts} setCounterFilms={setFilmsOnPage}
+                       showedFilms={filteredFilms} searchQuery={searchQuery}
+                       isLoading={isLoading} counterFilms={filmsOnPage} films={unfilteredFilms}/>
         </main>
     )
 }
 
-export default withLayout(Movies)
+export default withProtect(withLayout(Movies))

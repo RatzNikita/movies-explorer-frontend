@@ -3,25 +3,27 @@ import {Header} from "../Header/Header";
 import React from "react";
 import {CurrentUserContext} from "../context/CurrentUserContext";
 import {api} from "../../api/MainApi";
-import {useNavigate} from "react-router-dom";
+import withProtect from "../../hoc/withProtect/withProtect";
 
-export const Profile = () => {
+const Profile = ({onSignOut}) => {
 
     const {currentUser, setCurrentUser} = React.useContext(CurrentUserContext)
     const [edit, setEdit] = React.useState(false)
     const [formState, setFormState] = React.useState({name: currentUser.name, email: currentUser.email})
-    const [error, setError] = React.useState(null)
+    const [message, setMessage] = React.useState(null)
 
-    const handleEdit = () => {
+    React.useEffect(() => {
+        setFormState({name: currentUser.name, email: currentUser.email})
+    },[currentUser])
+
+    const handleEdit = (e) => {
+        e.preventDefault();
         setEdit(true)
     }
 
     const setValue = (e) => {
         setFormState({...formState, [e.target.name]: e.target.value})
     }
-
-    const navigate = useNavigate();
-
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -30,26 +32,30 @@ export const Profile = () => {
                 .then((user) => {
                     console.log(user)
                     setEdit(false)
-                    setError(null)
+                    setMessage({text: 'Успешно!', type: 'success'})
                     setCurrentUser(user)
                 })
                 .catch(error => {
                     console.log(error)
+                    setFormState({name: currentUser.name, email: currentUser.email})
                     setEdit(false)
                     if (error === 409) {
-                        setError('Пользователь с таким email уже существует')
+                        setMessage({text: 'Пользователь с таким email уже существует', type: 'error'})
                         return;
                     }
-                    setError('При обновлении пользователя произошла ошибка')
+                    setMessage({text: 'При обновлении пользователя произошла ошибка', type: 'error'})
                 })
-            setFormState({name: currentUser.name, email: currentUser.email})
+
         }
+    }
+
+    const cantBeSubmitted = () => {
+        return formState.email === currentUser.email && formState.name === currentUser.name
     }
 
     const handleSignOut = (e) => {
         e.preventDefault()
-        localStorage.clear();
-        navigate('/',{replace: true})
+        onSignOut()
     }
 
     return (
@@ -61,9 +67,9 @@ export const Profile = () => {
                     <p className='profile__text'>Имя</p>
                     {edit
                         ?
-                        <input align='right' name='name' className='profile__input' onChange={setValue}
+                        <input align='right' name='name' type='text' className='profile__input' onChange={setValue}
                                value={formState.name}></input>
-                        : <p className='profile__text profile__text_editable'
+                        : <p className='profile__text'
                              onClick={() => handleEdit()}>{currentUser.name}</p>
                     }
                 </div>
@@ -71,20 +77,30 @@ export const Profile = () => {
                 <div className='profile__text-container'>
                     <p className='profile__text'>E-mail</p>
                     {edit
-                        ? <input align='right' name='email' className='profile__input' onChange={setValue}
+                        ? <input align='right' name='email' type='email' className='profile__input' onChange={setValue}
                                  value={formState.email}></input>
-                        : <p className='profile__text profile__text_editable'
-                             onClick={() => handleEdit()}>{currentUser.email}</p>
+                        : <p className='profile__text'>{currentUser.email}</p>
                     }
                 </div>
                 <p align='center'
-                   className={`profile__error ${error ? 'profile__error_visible' : ''}`}>{error ? error : ''}</p>
+                   className={`profile__message ${message ? 'profile__message_visible' : ''}
+                    ${message?.type === 'success' ? 'profile__message_type_success' : ''}`}>{message ? message.text : ''}</p>
                 <div className='profile__buttons-container'>
-                    <button className='profile__button' onClick={handleSubmit}>Редактировать</button>
-                    <button className='profile__button profile__button_color_red' onClick={handleSignOut}>Выйти из аккаунта</button>
+                    {edit
+                        ? <button className='profile__button' onClick={handleSubmit}
+                                  disabled={cantBeSubmitted()}>Сохранить</button>
+                        : <button className='profile__button' onClick={handleEdit}>Редактировать</button>
+                    }
+
+                    <button className='profile__button profile__button_color_red' onClick={handleSignOut}>Выйти из
+                        аккаунта
+                    </button>
                 </div>
             </form>
         </>
     )
 }
+
+export default withProtect(Profile)
+
 

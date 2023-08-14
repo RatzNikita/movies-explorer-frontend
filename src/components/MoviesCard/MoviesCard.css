@@ -49,7 +49,7 @@ display: grid;
     box-sizing: border-box;
     margin: 0;
     max-height: 18px;
-    max-width: 45px;
+    max-width: 50px;
     justify-self: end;
 }
 

@@ -7,9 +7,8 @@ class Api {
         return fetch(`${this._options.baseUrl}`, {
             method: 'GET', headers: this._options.headers
         })
-            .then(res => {
-                return this._checkStatus(res)
-            })
+            .then(res => this._checkStatus(res)
+            )
     }
 
     _checkStatus(res) {

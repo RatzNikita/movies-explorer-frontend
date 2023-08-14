@@ -7,7 +7,7 @@ import React from 'react'
 
 export const Header = () => {
 
-    const {setNavIsVisible} = React.useContext(AppContext)
+    const {setNavIsVisible,loggedIn} = React.useContext(AppContext)
 
     const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ export const Header = () => {
     return (
         <header className={`header ${window.location.pathname === '/' && 'header_color_pink'}`}>
             <img src={logo} alt='App logo' className='header__logo' onClick={() => toRoute('/')}/>
-            {window.location.pathname === '/'
+            {!loggedIn
                 ? <div className='header__auth-bar'>
                     <button type='button' className='header__button header__button_type_signup'
                             onClick={() => toRoute('/signup')}>Регистрация

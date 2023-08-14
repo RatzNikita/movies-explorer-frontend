@@ -5,8 +5,7 @@ import {AboutProject} from "./AboutProject/AboutProject";
 import {Techs} from "./Techs/Techs";
 import {AboutMe} from "./AboutMe/AboutMe";
 import {Portfolio} from "./Portfolio/Portfolio";
-import withLayout from "../../utils/withLayout/withLayout";
-
+import withLayout from "../../hoc/withLayout/withLayout";
 
 
 const Main = () => {

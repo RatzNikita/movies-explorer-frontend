@@ -1,17 +1,16 @@
 import './App.css';
 import Main from "../Main/Main";
-import {Route, Routes, useNavigate, useNavigation} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import {Register} from "../Register/Register";
 import {Login} from "../Login/Login";
 import Movies from "../Movies/Movies";
 import {AppContext} from "../context/AppContext";
 import React from 'react'
 import {Navigation} from "../Navigation/Navigation";
-import {Profile} from "../Profile/Profile";
+import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import {NotFound} from "../NotFound/NotFound";
 import {CurrentUserContext} from "../context/CurrentUserContext";
-import main from "../Main/Main";
 import {api} from "../../api/MainApi";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
 
     const [navIsVisible, setNavIsVisible] = React.useState(false)
     const [loggedIn, setLoggedIn] = React.useState(false);
-    const [isLoading, setIsLoading] = React.useState()
 
     const [currentUser, setCurrentUser] = React.useState({})
     const navigate = useNavigate();
@@ -59,16 +57,23 @@ function App() {
     }, [loggedIn])
 
 
+    const onSignOut = () => {
+        setCurrentUser({})
+        setLoggedIn(false)
+        localStorage.clear();
+        navigate('/', {replace: true})
+    }
+
     return (
         <div className="page">
-            <AppContext.Provider value={{navIsVisible, setNavIsVisible}}>
+            <AppContext.Provider value={{navIsVisible, setNavIsVisible, loggedIn}}>
                 <CurrentUserContext.Provider value={{currentUser,setCurrentUser}}>
                     <Routes>
                         <Route path='/signup' element={<Register/>}/>
                         <Route path='/signin' element={<Login handleLogin={handleLogin}/>}/>
                         <Route path='/movies' element={<Movies/>}/>
                         <Route path='/' element={<Main/>}/>
-                        <Route path='/profile' element={<Profile/>}/>
+                        <Route path='/profile' element={<Profile onSignOut={onSignOut}/>}/>
                         <Route path='/saved-movies' element={<SavedMovies/>}/>
                         <Route path='*' element={<NotFound/>}/>
                     </Routes>

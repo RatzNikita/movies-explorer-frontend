@@ -33,13 +33,6 @@
     margin: 0;
     padding: 0;
 }
-.profile__text_editable {
-    cursor: pointer;
-    transition: scale 0.2s;
-}
-.profile__text_editable:hover {
-    transform: scale(1.1);
-}
 
 .profile__input {
     display: block;
@@ -79,6 +72,13 @@
     transition: opacity .2s;
     cursor: pointer;
 }
+.profile__button:disabled {
+    cursor: default;
+    color: #A0A0A0;
+}
+.profile__button:disabled:hover {
+    opacity: 1;
+}
 .profile__button:hover {
     opacity: 0.7;
 }
@@ -87,20 +87,24 @@
     color: #FF4062;
 }
 
-.profile__error {
+.profile__message {
     visibility: hidden;
     color: #FF4062;
     font-size: 11px;
     font-weight: 500;
     line-height: normal;
     margin: 0;
-    padding: 0;
+    padding: 10px 0 0 0;
     min-height: 25px;
     max-height: 25px;
+    justify-self: end;
 }
 
-.profile__error_visible {
+.profile__message_visible {
     visibility: visible;
+}
+.profile__message_type_success {
+    color: #08ab34;
 }
 
 

@@ -37,15 +37,29 @@ class Api {
             })
     }
 
-    postMovies(movie) {
+    getSavedMovies() {
+        return fetch(`${this._options.baseUrl}/movies`, {
+            method: 'GET', headers: this._options.headers,
+        })
+            .then(res => {
+                if(res.ok) {
+                    return res.json()
+                } else {
+                    return []
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
+    saveMovie(movie) {
         return fetch(`${this._options.baseUrl}/movies`, {
             method: 'POST', headers: this._options.headers,
-            body: JSON.stringify(...movie)
+            body: JSON.stringify(movie)
         })
     }
 
     removeMovie(id) {
-        return fetch(`${this._options.baseUrl}/cards/${id}`, {
+        return fetch(`${this._options.baseUrl}/movies/${id}`, {
             method: 'DELETE', headers: this._options.headers,
         })
             .then(res => {
@@ -63,7 +77,7 @@ class Api {
             })
     }
 
-    checkToken(token) {
+    checkToken() {
         return fetch(`${this._options.baseUrl}/users/me`, {
             method: 'GET',
             headers: this._options.headers

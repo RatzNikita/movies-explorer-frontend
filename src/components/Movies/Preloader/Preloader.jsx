@@ -1,6 +1,5 @@
 import './Preloader.css'
 import React from 'react'
-import {MoviesContext} from "../../context/MoviesContext";
 
 const addFilms = () => {
     const width = window.innerWidth
@@ -11,17 +10,16 @@ const addFilms = () => {
     }
 }
 
-export const Preloader = ({queryIsEmpty}) => {
+export const Preloader = ({
+                              queryIsEmpty, setCounterFilms,
+                              films,
+                              onlyShorts,
+                              showedFilms,
+                              counterFilms,
+                              searchQuery,
+                              isLoading
+                          }) => {
 
-    const {
-        setCounterFilms,
-        films,
-        onlyShorts,
-        showedFilms,
-        counterFilms,
-        searchQuery,
-        isLoading
-    } = React.useContext(MoviesContext)
     const [canLoad, setCanLoad] = React.useState(false)
     const [message, setMessage] = React.useState('Ничего не найдено')
 
@@ -43,7 +41,7 @@ export const Preloader = ({queryIsEmpty}) => {
             setCanLoad(false)
             setMessage('Введите название фильма')
         }
-    })
+    }, [searchQuery, films, showedFilms])
 
     const uploadFilms = () => {
         if (!queryIsEmpty) {
@@ -53,14 +51,14 @@ export const Preloader = ({queryIsEmpty}) => {
 
     const checkCount = () => {
         if (!onlyShorts) {
-            if (films.length > counterFilms) {
+            if (films?.length > counterFilms) {
                 return (
                     <button className='preloader__button'
                             onClick={uploadFilms}>{'Ещё'}</button>
                 )
             }
         } else {
-            if (films.filter(f => f.duration < 40).length > counterFilms) {
+            if (films?.filter(f => f.duration < 40).length > counterFilms) {
                 return (
                     <button className='preloader__button'
                             onClick={uploadFilms}>{'Ещё'}</button>
@@ -81,8 +79,6 @@ export const Preloader = ({queryIsEmpty}) => {
                     ? checkCount()
                     : <button className='preloader__button'>{message}</button>
             }
-
-
         </div>
     )
 }
