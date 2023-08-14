@@ -9,7 +9,7 @@ const withProtect = (Component) => {
             <>
                 {loggedIn
                     ? <Component {...props}/>
-                    : <Navigate to="/signin" replace/>
+                    : <Navigate to="/" replace/>
                 }
             </>
         );

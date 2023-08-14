@@ -15,10 +15,8 @@ import {api} from "../../api/MainApi";
 
 function App() {
 
-
     const [navIsVisible, setNavIsVisible] = React.useState(false)
     const [loggedIn, setLoggedIn] = React.useState(false);
-
     const [currentUser, setCurrentUser] = React.useState({})
     const navigate = useNavigate();
 
@@ -33,7 +31,6 @@ function App() {
             api.checkToken(token).then((data) => {
                 if (data) {
                     setLoggedIn(true);
-                    navigate('/movies')
                 }
             }).catch(err => {
                 console.log(err)
@@ -69,13 +66,13 @@ function App() {
             <AppContext.Provider value={{navIsVisible, setNavIsVisible, loggedIn}}>
                 <CurrentUserContext.Provider value={{currentUser,setCurrentUser}}>
                     <Routes>
+                        <Route path='/' element={<Main/>}/>
                         <Route path='/signup' element={<Register/>}/>
                         <Route path='/signin' element={<Login handleLogin={handleLogin}/>}/>
                         <Route path='/movies' element={<Movies/>}/>
-                        <Route path='/' element={<Main/>}/>
                         <Route path='/profile' element={<Profile onSignOut={onSignOut}/>}/>
                         <Route path='/saved-movies' element={<SavedMovies/>}/>
-                        <Route path='*' element={<NotFound/>}/>
+                        <Route path='*' element={<NotFound/>} exact/>
                     </Routes>
                     <Navigation visible={navIsVisible}/>
                 </CurrentUserContext.Provider>

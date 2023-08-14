@@ -41,7 +41,7 @@ const SavedMovies = () => {
 
     return (
         <main className='saved-movies'>
-            <SearchForm onlyShorts={onlyShorts} setOnlyShorts={setOnlyShorts} onMoviesSearch={onMovieSearch} key={2}/>
+            <SearchForm isLoading={isLoading} onlyShorts={onlyShorts} setOnlyShorts={setOnlyShorts} onMoviesSearch={onMovieSearch} key={2}/>
             <MoviesCardList movies={savedFilms} setMovies={setSavedFilms}/>
             <div className='preloader'>
                 {isLoading

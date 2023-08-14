@@ -32,3 +32,4 @@ export const showCards = () => {
 export const search = () => JSON.parse(localStorage.getItem('search'))
 export const shorts = () => JSON.parse(localStorage.getItem('shorts'))
 export const stateFilms = () => JSON.parse(localStorage.getItem('films'))
+export const nameRegex = /[0-9a-zA-Zа-яА-Я\- ]/i

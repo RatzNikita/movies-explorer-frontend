@@ -3,7 +3,7 @@ import React from "react";
 import {search} from "../../../utils/helpFunctions";
 
 
-export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
+export const SearchForm = ({isLoading, onMoviesSearch,setOnlyShorts,onlyShorts}) => {
 
     const [formState, setFormState] = React.useState({search: ''})
     const [error,setError] = React.useState(false)
@@ -42,10 +42,11 @@ export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
                 <div className='search-form__search-icon'/>
                 <input name='search' className='search-form__input' placeholder='Фильм' value={formState.search}
                        required
+                       disabled={isLoading}
                        onChange={onInputChange}></input>
-                <button className='search-form__button' onClick={handleSearch}>Найти</button>
+                <button className='search-form__button' onClick={handleSearch} disabled={isLoading}>Найти</button>
                 <div className='search-form__switch-container search-form__switch-container_inline'>
-                    <input type='checkbox'  className='search-form__switch' checked={onlyShorts}
+                    <input type='checkbox' disabled={isLoading} className='search-form__switch' checked={onlyShorts}
                            onChange={handleSwitch}/>
                     <p className='search-form__switch-caption'>Короткометражки</p>
                 </div>
@@ -53,6 +54,7 @@ export const SearchForm = ({onMoviesSearch,setOnlyShorts,onlyShorts}) => {
             </form>
             <div className='search-form__switch-container'>
                 <input type='checkbox'  className='search-form__switch'
+                       disabled={isLoading}
                        checked={onlyShorts}
                        onChange={handleSwitch}/>
                 <p className='search-form__switch-caption'>Короткометражки</p>

@@ -78,6 +78,13 @@
     width: 100%;
     transition: background-color .3s;
 }
+.auth-form__button:disabled {
+    cursor: default;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.auth-form__button:disabled:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
 .auth-form__button:hover {
     background-color: rgba(0, 0, 0, 0.8);

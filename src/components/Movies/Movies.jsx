@@ -49,7 +49,7 @@ const Movies = () => {
 
     return (
         <main className='movies'>
-            <SearchForm onMoviesSearch={onMoviesSearch} setOnlyShorts={setOnlyShorts} onlyShorts={onlyShorts} key={1}/>
+            <SearchForm isLoading={isLoading} onMoviesSearch={onMoviesSearch} setOnlyShorts={setOnlyShorts} onlyShorts={onlyShorts} key={1}/>
             <MoviesCardList movies={filteredFilms} error={error}/>
             <Preloader queryIsEmpty={!searchQuery} onlyShorts={onlyShorts} setCounterFilms={setFilmsOnPage}
                        showedFilms={filteredFilms} searchQuery={searchQuery}

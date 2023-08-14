@@ -33,6 +33,10 @@
     outline: none;
     width: 100%;
 }
+.search-form__input:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
 
 .search-form__search-icon {
     background: url('../../../images/search.svg');
@@ -66,6 +70,14 @@
 .search-form__button:hover {
     opacity: 0.7;
 }
+.search-form__button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+.search-form__button:disabled:hover {
+    opacity: 0.5
+}
+
 
 .search-form__switch-container {
     margin: 0;
@@ -104,9 +116,20 @@
 .search-form__switch:checked {
     background-image: url("../../../images/smalltumb.svg");
 }
+.search-form__switch:checked:disabled {
+    cursor: default;
+    opacity: 0.5
+}
 
 .search-form__switch:hover {
     transform: scale(1.1);
+}
+.search-form__switch:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+.search-form__switch:disabled:hover {
+    transform: none;
 }
 
 .search-form__switch-caption {

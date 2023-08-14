@@ -3,6 +3,7 @@ import React from 'react'
 import {AuthForm} from "../AuthForm/AuthForm";
 import {api} from "../../api/MainApi";
 import {useNavigate} from "react-router-dom";
+import {nameRegex} from "../../utils/helpFunctions";
 
 
 export const Register = () => {
@@ -37,7 +38,7 @@ export const Register = () => {
     return (
         <section>
             <AuthForm error={error} type='signup' onSubmit={onFormSubmit} noValidate>
-                <Input name='name' minLength={2} maxLength={30} type='text' label='Имя' value={formValue.name} required
+                <Input pattern='[0-9a-zA-Zа-яА-Я\- ]{2,30}' name='name' minLength={2} maxLength={30} type='text' label='Имя' value={formValue.name} required
                        onChange={setValue}/>
                 <Input type='email' name='email' label='E-mail' value={formValue.email} required onChange={setValue}/>
                 <Input minLength={2} maxLength={30} name='password' required type='password' label='Пароль'
