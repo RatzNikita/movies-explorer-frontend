@@ -7,7 +7,6 @@ import {AboutMe} from "./AboutMe/AboutMe";
 import {Portfolio} from "./Portfolio/Portfolio";
 import withLayout from "../../hoc/withLayout/withLayout";
 
-
 const Main = () => {
     return (
         <main className='landing'>

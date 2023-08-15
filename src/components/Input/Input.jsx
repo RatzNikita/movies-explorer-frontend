@@ -9,6 +9,7 @@ export const Input = ({label, onChange, ...props}) => {
         setIsValid(e.target.validity.valid)
         onChange(e)
     }
+
     return (
         <>
             <label className='auth-form__input-name'>{label}</label>

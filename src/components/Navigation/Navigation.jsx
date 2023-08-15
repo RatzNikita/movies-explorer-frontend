@@ -6,7 +6,6 @@ import {AppContext} from "../context/AppContext";
 export const Navigation = ({visible = false}) => {
 
     const {setNavIsVisible} = useContext(AppContext)
-
     const navigate = useNavigate();
 
     const onClose = () => {

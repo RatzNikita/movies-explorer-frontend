@@ -5,7 +5,7 @@ export const NotFound = () => {
     const navigation = useNavigate();
 
     const toMain = () => {
-        navigation('/',{replace: true})
+        navigation(-1)
     }
 
     return (

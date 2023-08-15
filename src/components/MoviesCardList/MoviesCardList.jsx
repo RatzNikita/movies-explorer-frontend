@@ -17,7 +17,7 @@ export const MoviesCardList = ({movies, setMovies,error}) => {
         await api.saveMovie(movie)
             .then((movie) => {
                 setMovies(prev => prev.map((film) => {
-                    if (film._id === movie._id) {
+                    if (film.id === movie.movieId) {
                         film.saved = true;
                     }
                     return film;
@@ -31,7 +31,7 @@ export const MoviesCardList = ({movies, setMovies,error}) => {
             <ul className='movies-cards__list'>
                 {movies?.map(movie => {
                     return (
-                        <MoviesCard key={movie.id} movie={movie} onMovieRemove={onMovieRemove}
+                        <MoviesCard key={movie.nameEN} movie={movie} onMovieRemove={onMovieRemove}
                                     onMovieSave={onMovieSave}/>
                     )
                 })}

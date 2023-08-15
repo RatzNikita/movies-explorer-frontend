@@ -5,8 +5,6 @@ import {useNavigate} from "react-router-dom";
 
 export const AuthForm = ({children, onSubmit,error, type, ...props}) => {
     const [formValid, setFormValid] = React.useState(false)
-
-
     const navigate = useNavigate()
 
     const checkValid = (e) => {
@@ -21,11 +19,9 @@ export const AuthForm = ({children, onSubmit,error, type, ...props}) => {
         }
     }
 
-
     const toRoute = (route) => {
         navigate(route,{replace: true})
     }
-    console.log('valid:',formValid)
 
     return (
         <section className='auth-form'>
@@ -36,7 +32,6 @@ export const AuthForm = ({children, onSubmit,error, type, ...props}) => {
                     {children}
                     <p className={`auth-form__error ${!formValid && 'auth-form__error_visible'}`}>Что-то пошло не
                         так...</p>
-
                 </div>
                 <p align='center' className={`auth-form__error ${error ? 'auth-form__error_visible' : ''}`}>{error}</p>
                 <div className='auth-form__button-container'>

@@ -2,7 +2,6 @@ import './Footer.css'
 
 export const Footer = () => {
 
-
     return (
         <footer className='footer'>
             <h3 className='footer__heading'>Учебный проект Яндекс.Практикум х BeatFilm.</h3>

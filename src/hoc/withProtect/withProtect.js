@@ -5,15 +5,17 @@ import {Navigate} from "react-router-dom";
 const withProtect = (Component) => {
     return function WithLayout({...props}) {
         const {loggedIn} = React.useContext(AppContext)
-        return (
-            <>
-                {loggedIn
-                    ? <Component {...props}/>
-                    : <Navigate to="/" replace/>
-                }
-            </>
-        );
+        if (loggedIn !== null) {
+            return (
+                <>
+                    {loggedIn
+                        ? <Component {...props}/>
+                        : <Navigate to="/" replace/>
+                    }
+                </>
+            );
+        }
     };
 };
 
-export default  withProtect
+export default withProtect

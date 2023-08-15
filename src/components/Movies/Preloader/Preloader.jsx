@@ -1,17 +1,11 @@
 import './Preloader.css'
 import React from 'react'
+import {addCardsToShow} from "../../../utils/helpFunctions";
 
-const addFilms = () => {
-    const width = window.innerWidth
-    if (width >= 1280) {
-        return 3;
-    } else {
-        return 2;
-    }
-}
 
 export const Preloader = ({
-                              queryIsEmpty, setCounterFilms,
+                              queryIsEmpty,
+                              setCounterFilms,
                               films,
                               onlyShorts,
                               showedFilms,
@@ -20,54 +14,34 @@ export const Preloader = ({
                               isLoading
                           }) => {
 
-    const [canLoad, setCanLoad] = React.useState(false)
-    const [message, setMessage] = React.useState('Ничего не найдено')
+    const [showMore, setShowMore] = React.useState(false)
+    const [message, setMessage] = React.useState('Введите название фильма')
 
     React.useEffect(() => {
         if (searchQuery) {
-            if (films) {
-                if (showedFilms?.length < 1) {
-                    setCanLoad(false)
-                    setMessage('Ничего не найдено')
-                } else {
-                    setCanLoad(true)
-
-                }
+            if (films && showedFilms?.length > 0) {
+                setShowMore(true)
             } else {
-                setCanLoad(false)
+                setShowMore(false)
                 setMessage('Ничего не найдено')
             }
-        } else {
-            setCanLoad(false)
-            setMessage('Введите название фильма')
         }
     }, [searchQuery, films, showedFilms])
 
     const uploadFilms = () => {
         if (!queryIsEmpty) {
-            setCounterFilms(prev => prev + addFilms())
+            setCounterFilms(prev => prev + addCardsToShow())
         }
     }
 
-    const checkCount = () => {
-        if (!onlyShorts) {
-            if (films?.length > counterFilms) {
-                return (
-                    <button className='preloader__button'
-                            onClick={uploadFilms}>{'Ещё'}</button>
-                )
-            }
-        } else {
-            if (films?.filter(f => f.duration < 40).length > counterFilms) {
-                return (
-                    <button className='preloader__button'
-                            onClick={uploadFilms}>{'Ещё'}</button>
-                )
-            }
+    const appearMoreButton = () => {
+        if (!onlyShorts && (films?.length > counterFilms || films?.filter(f => f.duration < 40).length > counterFilms)) {
+            return (
+                <button className='preloader__button'
+                        onClick={uploadFilms}>{'Ещё'}</button>
+            )
         }
-        return null;
     }
-
 
     return (
         <div className='preloader'>
@@ -75,8 +49,8 @@ export const Preloader = ({
                 ? <button className='preloader__button'>
                     <div className='preloader__load'/>
                 </button>
-                : canLoad
-                    ? checkCount()
+                : showMore
+                    ? appearMoreButton()
                     : <button className='preloader__button'>{message}</button>
             }
         </div>

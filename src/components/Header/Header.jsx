@@ -4,11 +4,9 @@ import {useNavigate} from "react-router-dom";
 import {AppContext} from "../context/AppContext";
 import React from 'react'
 
-
 export const Header = () => {
 
     const {setNavIsVisible,loggedIn} = React.useContext(AppContext)
-
     const navigate = useNavigate();
 
     const toRoute = (route) => {

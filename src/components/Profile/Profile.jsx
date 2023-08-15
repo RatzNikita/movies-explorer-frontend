@@ -4,6 +4,7 @@ import React from "react";
 import {CurrentUserContext} from "../context/CurrentUserContext";
 import {api} from "../../api/MainApi";
 import withProtect from "../../hoc/withProtect/withProtect";
+import {USER_EXIST_MESSAGE, USER_UPDATE_MESSAGE} from "../../utils/constants";
 
 const Profile = ({onSignOut}) => {
 
@@ -30,7 +31,6 @@ const Profile = ({onSignOut}) => {
         if (edit) {
             await api.setUserInfo(formState)
                 .then((user) => {
-                    console.log(user)
                     setEdit(false)
                     setMessage({text: 'Успешно!', type: 'success'})
                     setCurrentUser(user)
@@ -40,12 +40,11 @@ const Profile = ({onSignOut}) => {
                     setFormState({name: currentUser.name, email: currentUser.email})
                     setEdit(false)
                     if (error === 409) {
-                        setMessage({text: 'Пользователь с таким email уже существует', type: 'error'})
+                        setMessage({text: USER_EXIST_MESSAGE, type: 'error'})
                         return;
                     }
-                    setMessage({text: 'При обновлении пользователя произошла ошибка', type: 'error'})
+                    setMessage({text: USER_UPDATE_MESSAGE, type: 'error'})
                 })
-
         }
     }
 
@@ -91,7 +90,6 @@ const Profile = ({onSignOut}) => {
                                   disabled={cantBeSubmitted()}>Сохранить</button>
                         : <button className='profile__button' onClick={handleEdit}>Редактировать</button>
                     }
-
                     <button className='profile__button profile__button_color_red' onClick={handleSignOut}>Выйти из
                         аккаунта
                     </button>

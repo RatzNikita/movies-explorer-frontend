@@ -2,7 +2,6 @@ import './SearchForm.css'
 import React from "react";
 import {search} from "../../../utils/helpFunctions";
 
-
 export const SearchForm = ({isLoading, onMoviesSearch,setOnlyShorts,onlyShorts}) => {
 
     const [formState, setFormState] = React.useState({search: ''})
@@ -15,7 +14,6 @@ export const SearchForm = ({isLoading, onMoviesSearch,setOnlyShorts,onlyShorts})
             }
         }
     }, []);
-
 
     const handleSwitch = (e) => {
         setOnlyShorts(e.target.checked)

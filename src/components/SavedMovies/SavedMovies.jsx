@@ -6,7 +6,6 @@ import {api} from "../../api/MainApi";
 import {searchByName} from "../../utils/helpFunctions";
 import withProtect from "../../hoc/withProtect/withProtect";
 
-
 const SavedMovies = () => {
 
     const [initialFilms, setInitialFilms] = React.useState([])
@@ -32,17 +31,16 @@ const SavedMovies = () => {
                 setSavedFilms(initialFilms)
             }
         }
-    }, [onlyShorts])
+    }, [onlyShorts,initialFilms])
 
     const onMovieSearch = ({search}) => {
         setSavedFilms(prev => prev.filter(film => searchByName(film, search)))
     }
 
-
     return (
         <main className='saved-movies'>
             <SearchForm isLoading={isLoading} onlyShorts={onlyShorts} setOnlyShorts={setOnlyShorts} onMoviesSearch={onMovieSearch} key={2}/>
-            <MoviesCardList movies={savedFilms} setMovies={setSavedFilms}/>
+            <MoviesCardList movies={savedFilms} setMovies={setInitialFilms}/>
             <div className='preloader'>
                 {isLoading
                     ? <button className='preloader__button'>

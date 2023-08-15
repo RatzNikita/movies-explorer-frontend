@@ -55,6 +55,8 @@ class Api {
         return fetch(`${this._options.baseUrl}/movies`, {
             method: 'POST', headers: this._options.headers,
             body: JSON.stringify(movie)
+        }).then(res => {
+            return this._checkStatus(res)
         })
     }
 

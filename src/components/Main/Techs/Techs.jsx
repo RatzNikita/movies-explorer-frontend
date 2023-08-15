@@ -1,6 +1,6 @@
 import './Techs.css'
+import {TECHS} from "../../../utils/constants";
 
-const techs = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB']
 
 export const Techs = () => {
 
@@ -12,7 +12,7 @@ export const Techs = () => {
             <p align='center' className='landing__text techs__text'>На курсе веб-разработки мы освоили технологии, которые
                 применили в дипломном проекте.</p>
             <ul className='techs__list'>
-                {techs.map(tech => {
+                {TECHS.map(tech => {
                     return (
                         <li key={tech} className='techs__item'>
                             {tech}

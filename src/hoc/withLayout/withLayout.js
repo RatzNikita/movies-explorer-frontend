@@ -10,8 +10,6 @@ const withLayout = (Component) => {
                 <Component {...props}/>
                 <Footer/>
             </>
-
-
         );
     };
 };

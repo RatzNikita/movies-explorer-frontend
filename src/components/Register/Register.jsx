@@ -1,12 +1,15 @@
 import {Input} from "../Input/Input";
-import React from 'react'
+import React, {useContext} from 'react'
 import {AuthForm} from "../AuthForm/AuthForm";
 import {api} from "../../api/MainApi";
-import {useNavigate} from "react-router-dom";
-import {nameRegex} from "../../utils/helpFunctions";
+import {Navigate, useNavigate} from "react-router-dom";
+import {USER_EXIST_MESSAGE, USER_REGISTRATION_MESSAGE} from "../../utils/constants";
+import {AppContext} from "../context/AppContext";
 
 
 export const Register = () => {
+
+    const {loggedIn} = useContext(AppContext)
 
     const [formValue, setFormValue] = React.useState({
         name: '',
@@ -18,15 +21,15 @@ export const Register = () => {
 
     const onFormSubmit = async () => {
         await api.signUp(formValue)
-            .then(res => {
+            .then(() => {
                 navigate('/signin',{replace: true})
             }).catch(error => {
                 console.log(error)
                 if (error === 409) {
-                    setError('Пользователь с таким email уже существует')
+                    setError(USER_EXIST_MESSAGE)
                     return;
                 }
-                setError('При регистрации пользователя произошла ошибка')
+                setError(USER_REGISTRATION_MESSAGE)
             })
     }
 
@@ -34,7 +37,7 @@ export const Register = () => {
         setFormValue({...formValue, [e.target.name]: e.target.value})
     }
 
-
+    if(!loggedIn) {
     return (
         <section>
             <AuthForm error={error} type='signup' onSubmit={onFormSubmit} noValidate>
@@ -47,4 +50,9 @@ export const Register = () => {
             </AuthForm>
         </section>
     )
+    } else {
+        return (
+            <Navigate to={'/'} replace/>
+        )
+    }
 }

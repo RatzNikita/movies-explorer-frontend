@@ -16,10 +16,9 @@ import {api} from "../../api/MainApi";
 function App() {
 
     const [navIsVisible, setNavIsVisible] = React.useState(false)
-    const [loggedIn, setLoggedIn] = React.useState(false);
+    const [loggedIn, setLoggedIn] = React.useState(null);
     const [currentUser, setCurrentUser] = React.useState({})
     const navigate = useNavigate();
-
 
     const handleLogin = () => {
         setLoggedIn(true)
@@ -27,31 +26,23 @@ function App() {
 
     const handleTokenCheck = () => {
         if (localStorage.getItem('token')) {
-            const token = localStorage.getItem('token');
-            api.checkToken(token).then((data) => {
+            api.checkToken().then((data) => {
                 if (data) {
+                    setCurrentUser(data)
                     setLoggedIn(true);
                 }
             }).catch(err => {
+                setLoggedIn(false)
                 console.log(err)
             })
+        } else {
+            setLoggedIn(false)
         }
     }
 
     React.useEffect(() => {
         handleTokenCheck();
     }, [])
-
-    React.useEffect(() => {
-        if (loggedIn) {
-            api.setToken(localStorage.getItem('token'))
-            api.getUserInfo()
-                .then((user) => {
-                    setCurrentUser(user)
-                })
-                .catch(err => console.log(err))
-        }
-    }, [loggedIn])
 
 
     const onSignOut = () => {
@@ -64,7 +55,7 @@ function App() {
     return (
         <div className="page">
             <AppContext.Provider value={{navIsVisible, setNavIsVisible, loggedIn}}>
-                <CurrentUserContext.Provider value={{currentUser,setCurrentUser}}>
+                <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
                     <Routes>
                         <Route path='/' element={<Main/>}/>
                         <Route path='/signup' element={<Register/>}/>
@@ -72,7 +63,7 @@ function App() {
                         <Route path='/movies' element={<Movies/>}/>
                         <Route path='/profile' element={<Profile onSignOut={onSignOut}/>}/>
                         <Route path='/saved-movies' element={<SavedMovies/>}/>
-                        <Route path='*' element={<NotFound/>} exact/>
+                        <Route path='*' element={<NotFound/>}/>
                     </Routes>
                     <Navigation visible={navIsVisible}/>
                 </CurrentUserContext.Provider>
