@@ -46,7 +46,7 @@ export const Login = ({handleLogin}) => {
             <section className='signin'>
                 <AuthForm error={error} type='signin' onSubmit={onFormSubmit} noValidate>
                     <Input type='email' name='email' label='E-mail' value={formValue.email} onChange={setValue}/>
-                    <Input minLength={2} maxLength={30} type='password' name='password' label='Пароль'
+                    <Input minLength={2} maxLength={30}  required type='password' name='password' label='Пароль'
                            value={formValue.password}
                            onChange={setValue}/>
                 </AuthForm>

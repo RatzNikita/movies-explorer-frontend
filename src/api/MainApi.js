@@ -23,6 +23,7 @@ class Api {
             }).then((data) => {
                 if (data.token){
                     localStorage.setItem('token', data.token);
+                    this._options.headers.authorization = data.token
                     return data;
                 }
             })
@@ -70,7 +71,6 @@ class Api {
     }
 
     setUserInfo({name, email}) {
-        console.log(name,email)
         return fetch(`${this._options.baseUrl}/users/me`, {
             method: 'PATCH', headers: this._options.headers, body: JSON.stringify({name, email})
         })
@@ -100,7 +100,7 @@ class Api {
 
 export const api = new Api({
     baseUrl: 'https://api.ratz-movies-search.nomoreparties.co', headers: {
-        authorization: 'Bearer ' + localStorage.getItem('token'),
+        authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }
