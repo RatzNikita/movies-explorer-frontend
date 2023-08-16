@@ -23,18 +23,9 @@ class Api {
             }).then((data) => {
                 if (data.token){
                     localStorage.setItem('token', data.token);
-                    this._options.headers.authorization = data.token
+                    this.setToken(data.token)
                     return data;
                 }
-            })
-    }
-
-    getUserInfo() {
-        return fetch(`${this._options.baseUrl}/users/me`, {
-            method: 'GET', headers: this._options.headers,
-        })
-            .then(res => {
-                return this._checkStatus(res)
             })
     }
 
