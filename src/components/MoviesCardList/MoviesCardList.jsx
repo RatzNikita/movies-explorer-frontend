@@ -2,18 +2,21 @@ import './MoviesCardList.css'
 import {MoviesCard} from "../MoviesCard/MoviesCard";
 import React from "react";
 import {api} from "../../api/MainApi";
+import {setLikeToStore, unsetLikeFromStore} from "../../utils/helpFunctions";
 
 export const MoviesCardList = ({movies, setMovies,error}) => {
 
 
-    const onMovieRemove = async (id) => {
-        await api.removeMovie(id).then(() => {
-            setMovies(prev => prev.filter(movie => movie._id !== id))
+    const onMovieRemove = async (movie) => {
+        await api.removeMovie(movie._id).then(() => {
+            setMovies(prev => prev.filter(film => film._id !== movie._id))
+            unsetLikeFromStore(movie.movieId)
         })
             .catch(error => console.log(error))
     }
 
     const onMovieSave = async (movie) => {
+        console.log(movie)
         await api.saveMovie(movie)
             .then((movie) => {
                 setMovies(prev => prev.map((film) => {
@@ -22,6 +25,7 @@ export const MoviesCardList = ({movies, setMovies,error}) => {
                     }
                     return film;
                 }))
+                setLikeToStore(movie.movieId)
             })
             .catch(error => console.log(error))
     }

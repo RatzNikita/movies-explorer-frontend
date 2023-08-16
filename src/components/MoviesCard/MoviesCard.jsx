@@ -8,7 +8,7 @@ export const MoviesCard = ({movie, onMovieRemove, onMovieSave}) => {
     const {currentUser} = useContext(CurrentUserContext)
 
     const handleRemoveMovie = () => {
-        onMovieRemove(movie._id)
+        onMovieRemove(movie)
     }
 
     const handleMovieSave = () => {

@@ -45,7 +45,6 @@ export const prepareMovieToSave = (movie,user) => {
     delete preparedMovie.id
     delete preparedMovie.created_at
     delete preparedMovie.updated_at
-
     return preparedMovie;
 }
 
@@ -62,6 +61,28 @@ export function convertMinutesToHHMM(minutes) {
     } else {
         return ` ${date[0]}ч ${date[1]}м`
     }
+}
+
+export function unsetLikeFromStore(id) {
+    const prevMovies = JSON.parse(localStorage.getItem('films'))
+    const newMovies = prevMovies.map(film => {
+        if(film.id === id) {
+            delete film.saved
+        }
+        return film;
+    })
+    localStorage.setItem('films',JSON.stringify(newMovies))
+}
+
+export function setLikeToStore(id) {
+    const prevMovies = JSON.parse(localStorage.getItem('films'))
+    const newMovies = prevMovies.map(film => {
+        if(film.id === id) {
+            film.saved = true;
+        }
+        return film;
+    })
+    localStorage.setItem('films',JSON.stringify(newMovies))
 }
 
 export const search = () => JSON.parse(localStorage.getItem('search'))

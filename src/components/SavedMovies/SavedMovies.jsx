@@ -8,15 +8,15 @@ import withProtect from "../../hoc/withProtect/withProtect";
 
 const SavedMovies = () => {
 
-    const [initialFilms, setInitialFilms] = React.useState([])
     const [savedFilms, setSavedFilms] = React.useState([]);
+    const [showedFilms,setShowedFilms] = React.useState([])
+    const [searchQuery,setSearchQuery] = React.useState('')
     const [onlyShorts, setOnlyShorts] = React.useState(false)
     const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(() => {
         setIsLoading(true)
         api.getSavedMovies().then(movies => {
-            setInitialFilms(movies)
             setSavedFilms(movies)
         })
             .catch(error => console.log(error))
@@ -26,21 +26,21 @@ const SavedMovies = () => {
     React.useEffect(() => {
         if (savedFilms) {
             if (onlyShorts) {
-                setSavedFilms(prev => prev.filter(film => film.duration <= 40))
+                setShowedFilms(savedFilms.filter(film => searchByName(film,searchQuery)).filter(film => film.duration <= 40))
             } else {
-                setSavedFilms(initialFilms)
+                setShowedFilms(savedFilms.filter(film => searchByName(film,searchQuery)))
             }
         }
-    }, [onlyShorts,initialFilms])
+    }, [onlyShorts,savedFilms,searchQuery])
 
     const onMovieSearch = ({search}) => {
-        setSavedFilms(prev => prev.filter(film => searchByName(film, search)))
+        setSearchQuery(search)
     }
 
     return (
         <main className='saved-movies'>
             <SearchForm isLoading={isLoading} onlyShorts={onlyShorts} setOnlyShorts={setOnlyShorts} onMoviesSearch={onMovieSearch} key={2}/>
-            <MoviesCardList movies={savedFilms} setMovies={setInitialFilms}/>
+            <MoviesCardList movies={showedFilms} setMovies={setSavedFilms}/>
             <div className='preloader'>
                 {isLoading
                     ? <button className='preloader__button'>

@@ -91,7 +91,7 @@ class Api {
 
 export const api = new Api({
     baseUrl: 'https://api.ratz-movies-search.nomoreparties.co', headers: {
-        authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token')),
+        authorization: 'Bearer ' + localStorage.getItem('token'),
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }

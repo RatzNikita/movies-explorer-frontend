@@ -42,7 +42,7 @@ function App() {
 
     React.useEffect(() => {
         handleTokenCheck();
-    }, [])
+    }, [loggedIn])
 
 
     const onSignOut = () => {
