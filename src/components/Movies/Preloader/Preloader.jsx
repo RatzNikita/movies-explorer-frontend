@@ -1,6 +1,7 @@
 import './Preloader.css'
 import React from 'react'
 import {addCardsToShow} from "../../../utils/helpFunctions";
+import {SHORTS_DURATION} from "../../../utils/constants";
 
 
 export const Preloader = ({
@@ -13,7 +14,6 @@ export const Preloader = ({
                               searchQuery,
                               isLoading
                           }) => {
-
     const [showMore, setShowMore] = React.useState(false)
     const [message, setMessage] = React.useState('Введите название фильма')
 
@@ -35,7 +35,7 @@ export const Preloader = ({
     }
 
     const appearMoreButton = () => {
-        if (!onlyShorts && (films?.length > counterFilms || films?.filter(f => f.duration < 40).length > counterFilms)) {
+        if (!onlyShorts && (films?.length > counterFilms || films?.filter(f => f.duration < SHORTS_DURATION).length > counterFilms)) {
             return (
                 <button className='preloader__button'
                         onClick={uploadFilms}>{'Ещё'}</button>

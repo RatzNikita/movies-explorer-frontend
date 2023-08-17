@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {CurrentUserContext} from "../context/CurrentUserContext";
 import {convertMinutesToHHMM, prepareMovieToSave} from "../../utils/helpFunctions";
 
-export const MoviesCard = ({movie, onMovieRemove, onMovieSave}) => {
+export const MoviesCard = ({movie, onMovieRemove, onMovieSave, onMovieUnlike}) => {
 
     const {currentUser} = useContext(CurrentUserContext)
 
@@ -22,6 +22,10 @@ export const MoviesCard = ({movie, onMovieRemove, onMovieSave}) => {
         }
     }
 
+    const handleUnlike = () => {
+        onMovieUnlike(movie)
+    }
+
     return (
         <li className='movie-card'>
             <div className='movie-card__img-container'>
@@ -30,7 +34,7 @@ export const MoviesCard = ({movie, onMovieRemove, onMovieSave}) => {
                 {window.location.pathname === '/saved-movies'
                     ? <button className='movie-card__btn movie-card__btn_style_remove' onClick={handleRemoveMovie}/>
                     : movie.saved
-                        ? <span className='movie-card__btn movie-card__btn_style_saved'/>
+                        ? <span className='movie-card__btn movie-card__btn_style_saved' onClick={handleUnlike}/>
                         : <button className='movie-card__btn movie-card__btn_style_save'
                                   onClick={handleMovieSave}>Сохранить</button>
                 }

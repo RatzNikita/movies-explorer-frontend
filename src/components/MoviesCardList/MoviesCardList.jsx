@@ -6,7 +6,6 @@ import {setLikeToStore, unsetLikeFromStore} from "../../utils/helpFunctions";
 
 export const MoviesCardList = ({movies, setMovies,error}) => {
 
-
     const onMovieRemove = async (movie) => {
         await api.removeMovie(movie._id).then(() => {
             setMovies(prev => prev.filter(film => film._id !== movie._id))
@@ -15,17 +14,31 @@ export const MoviesCardList = ({movies, setMovies,error}) => {
             .catch(error => console.log(error))
     }
 
+    const onMovieUnlike = async (movie) => {
+        await api.removeMovie(movie._id).then(() => {
+            setMovies(prev => prev.map((film) => {
+                if(film._id === movie._id) {
+                    delete film.saved;
+                    delete film._id;
+                }
+                return film;
+            }))
+            unsetLikeFromStore(movie.id)
+        })
+            .catch(error => console.log(error))
+    }
+
     const onMovieSave = async (movie) => {
-        console.log(movie)
         await api.saveMovie(movie)
             .then((movie) => {
                 setMovies(prev => prev.map((film) => {
                     if (film.id === movie.movieId) {
                         film.saved = true;
+                        film._id = movie._id
                     }
                     return film;
                 }))
-                setLikeToStore(movie.movieId)
+                setLikeToStore(movie.movieId, movie._id)
             })
             .catch(error => console.log(error))
     }
@@ -35,7 +48,7 @@ export const MoviesCardList = ({movies, setMovies,error}) => {
             <ul className='movies-cards__list'>
                 {movies?.map(movie => {
                     return (
-                        <MoviesCard key={movie.nameEN} movie={movie} onMovieRemove={onMovieRemove}
+                        <MoviesCard key={window.location.pathname === '/movies' ? movie.id : movie.movieId} movie={movie} onMovieRemove={onMovieRemove} onMovieUnlike={onMovieUnlike}
                                     onMovieSave={onMovieSave}/>
                     )
                 })}

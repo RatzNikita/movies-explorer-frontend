@@ -29,8 +29,8 @@ export const Header = () => {
                 : <>
                      <nav className='header__navigation'>
                         <div className='header__navigation-buttons'>
-                            <button className='header__navigation-button' onClick={() => toRoute('/movies')}>Фильмы</button>
-                            <button className='header__navigation-button' onClick={() => toRoute('/saved-movies')}>Сохранённые фильмы</button>
+                            <button className={`header__navigation-button ${window.location.pathname === '/movies' ? 'header__navigation-button_underlined' : ''}`} onClick={() => toRoute('/movies')}>Фильмы</button>
+                            <button className={`header__navigation-button ${window.location.pathname === '/saved-movies' ? 'header__navigation-button_underlined' : ''}`} onClick={() => toRoute('/saved-movies')}>Сохранённые фильмы</button>
                         </div>
                         <div className='account' onClick={() => toRoute('/profile')}>
                             <p className='account-text'>Аккаунт</p>

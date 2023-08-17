@@ -5,6 +5,7 @@ import React from "react";
 import {api} from "../../api/MainApi";
 import {searchByName} from "../../utils/helpFunctions";
 import withProtect from "../../hoc/withProtect/withProtect";
+import {SHORTS_DURATION} from "../../utils/constants";
 
 const SavedMovies = () => {
 
@@ -15,18 +16,13 @@ const SavedMovies = () => {
     const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(() => {
-        setIsLoading(true)
-        api.getSavedMovies().then(movies => {
-            setSavedFilms(movies)
-        })
-            .catch(error => console.log(error))
-        setIsLoading(false)
+        getSavedFilms()
     }, [])
 
     React.useEffect(() => {
         if (savedFilms) {
             if (onlyShorts) {
-                setShowedFilms(savedFilms.filter(film => searchByName(film,searchQuery)).filter(film => film.duration <= 40))
+                setShowedFilms(savedFilms.filter(film => searchByName(film,searchQuery)).filter(film => film.duration <= SHORTS_DURATION))
             } else {
                 setShowedFilms(savedFilms.filter(film => searchByName(film,searchQuery)))
             }
@@ -35,6 +31,15 @@ const SavedMovies = () => {
 
     const onMovieSearch = ({search}) => {
         setSearchQuery(search)
+    }
+
+    const getSavedFilms = async () => {
+        setIsLoading(true)
+        await api.getSavedMovies().then(movies => {
+            setSavedFilms(movies)
+        })
+            .catch(error => console.log(error))
+        setIsLoading(false)
     }
 
     return (
@@ -46,7 +51,7 @@ const SavedMovies = () => {
                     ? <button className='preloader__button'>
                         <div className='preloader__load'/>
                     </button>
-                    : savedFilms.length === 0
+                    : !isLoading && savedFilms.length === 0
                         ? <button className='preloader__button'>{'Ничего не найдено'}</button>
                         : null
                 }

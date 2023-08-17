@@ -89,6 +89,10 @@
 .header__navigation-button:hover {
     opacity: 0.8;
 }
+.header__navigation-button_underlined {
+    border-bottom: 2px black solid;
+}
+
 
 @media (min-width: 768px) {
     .header {

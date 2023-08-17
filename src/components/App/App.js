@@ -58,7 +58,7 @@ function App() {
                 <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
                     <Routes>
                         <Route path='/' element={<Main/>}/>
-                        <Route path='/signup' element={<Register/>}/>
+                        <Route path='/signup' element={<Register handleLogin={handleLogin}/>}/>
                         <Route path='/signin' element={<Login handleLogin={handleLogin}/>}/>
                         <Route path='/movies' element={<Movies/>}/>
                         <Route path='/profile' element={<Profile onSignOut={onSignOut}/>}/>

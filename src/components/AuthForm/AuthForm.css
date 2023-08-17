@@ -25,6 +25,13 @@
     margin: 0;
     padding: 0;
     height: 517px;
+    transition: opacity .2s;
+}
+
+.auth-form__form_disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: default;
 }
 
 .auth-form__form-container {

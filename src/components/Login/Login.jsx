@@ -10,6 +10,7 @@ import {AppContext} from "../context/AppContext";
 export const Login = ({handleLogin}) => {
 
     const {loggedIn} = useContext(AppContext)
+    const [isLoading,setIsLoading] = React.useState(false);
 
     const [formValue, setFormValue] = React.useState({
         email: '',
@@ -19,6 +20,7 @@ export const Login = ({handleLogin}) => {
     const navigate = useNavigate();
 
     const onFormSubmit = async () => {
+        setIsLoading(true)
         await api.signIn(formValue)
             .then(({token}) => {
                 if (token) {
@@ -33,19 +35,18 @@ export const Login = ({handleLogin}) => {
                     setError(INVALID_TOKEN_MESSAGE)
                 }
             })
+        setIsLoading(false)
     }
 
     const setValue = (e) => {
         setFormValue({...formValue, [e.target.name]: e.target.value})
     }
 
-
-
     if(!loggedIn) {
         return (
             <section className='signin'>
-                <AuthForm error={error} type='signin' onSubmit={onFormSubmit} noValidate>
-                    <Input type='email' name='email' label='E-mail' value={formValue.email} onChange={setValue}/>
+                <AuthForm disabled={isLoading} formValue={formValue} error={error} type='signin' onSubmit={onFormSubmit} noValidate>
+                    <Input pattern='^([a-z0-9_\-]+\.)*[a-z0-9_\-]+@[a-z0-9_\-]+(\.[a-z0-9_\-]+)*\.[a-z]{2,6}$'  name='email' label='E-mail' value={formValue.email} onChange={setValue}/>
                     <Input minLength={2} maxLength={30}  required type='password' name='password' label='Пароль'
                            value={formValue.password}
                            onChange={setValue}/>

@@ -80,13 +80,10 @@ display: grid;
 
 .movie-card__btn_style_saved {
     background: url("../../images/saved.svg");
-    cursor: default;
     width: 21px;
     height: 21px;
 }
-.movie-card__btn_style_saved:hover {
-    transform: none;
-}
+
 .movie-card__btn_style_remove {
     background: url("../../images/remove.svg");
     width: 21px;

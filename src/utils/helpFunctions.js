@@ -1,11 +1,22 @@
 import {api} from "../api/MainApi";
+import {
+    MAX_CARDS_MEDIUM_SCREEN,
+    MAX_CARDS_SMALL_SCREEN,
+    MAX_CARDS_WIDE_SCREEN,
+    MEDIUM_SCREEN,
+    MORE_CARDS_SMALL_SCREEN,
+    MORE_CARDS_WIDE_SCREEN,
+    WIDE_SCREEN
+} from "./constants";
 
 export const getSavedFilms = async (films) => {
     const savedMovies = await api.getSavedMovies()
     if (savedMovies.length > 0) {
         return films.map((film) => {
-            if (savedMovies.find(movie => movie.movieId === film.id)) {
+            const currenFilm = savedMovies.find(movie => movie.movieId === film.id)
+            if (currenFilm) {
                 film.saved = true;
+                film._id = currenFilm._id
             }
             return film;
         })
@@ -21,21 +32,21 @@ export const searchByName = (film, query) => {
 export const addCardsToShow = () => {
     const width = window.innerWidth
     if (width >= 1280) {
-        return 3;
+        return MORE_CARDS_WIDE_SCREEN;
     } else {
-        return 2;
+        return MORE_CARDS_SMALL_SCREEN;
     }
 }
 
 
 export const showCards = () => {
     const width = window.innerWidth
-    if (width >= 1280) {
-        return 12;
-    } else if (width >= 768) {
-        return 8;
+    if (width >= WIDE_SCREEN) {
+        return MAX_CARDS_WIDE_SCREEN;
+    } else if (width >= MEDIUM_SCREEN) {
+        return MAX_CARDS_MEDIUM_SCREEN;
     } else {
-        return 5;
+        return MAX_CARDS_SMALL_SCREEN;
     }
 }
 
@@ -68,17 +79,19 @@ export function unsetLikeFromStore(id) {
     const newMovies = prevMovies.map(film => {
         if(film.id === id) {
             delete film.saved
+            delete film._id
         }
         return film;
     })
     localStorage.setItem('films',JSON.stringify(newMovies))
 }
 
-export function setLikeToStore(id) {
+export function setLikeToStore(movieId,newId) {
     const prevMovies = JSON.parse(localStorage.getItem('films'))
     const newMovies = prevMovies.map(film => {
-        if(film.id === id) {
+        if(film.id === movieId) {
             film.saved = true;
+            film._id = newId
         }
         return film;
     })
