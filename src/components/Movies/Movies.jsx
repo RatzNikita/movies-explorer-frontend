@@ -21,7 +21,7 @@ const Movies = () => {
     const [error, setError] = React.useState(false)
 
     React.useEffect(() => {
-        if (searchQuery && initialMovies.length < 1) {
+        if (searchQuery && initialMovies.length < 1 && unfilteredFilms.length < 1) {
             getMovies()
         }
     }, [searchQuery])
@@ -39,7 +39,6 @@ const Movies = () => {
     const onMoviesSearch = async ({search}) => {
         setError(false)
         setUnfilteredFilms([])
-        setIsLoading(true)
         setFilmsOnPage(showCards())
         setSearchQuery(search)
         if (initialMovies?.length > 0) {
@@ -48,7 +47,6 @@ const Movies = () => {
             localStorage.setItem('films', JSON.stringify(movies))
             setUnfilteredFilms(movies)
         }
-        setIsLoading(false)
     }
 
     const getMovies = async () => {
