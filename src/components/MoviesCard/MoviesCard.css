@@ -1,0 +1,134 @@
+.movie-card {
+display: grid;
+    position: relative;
+    grid-template-areas:
+            "img img img"
+            "title title caption";
+    grid-template-rows: max-content 32px;
+    list-style: none;
+    margin: 0;
+    gap: 14px 12px;
+    padding: 20px 0 0;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+.movie-card__img {
+    border-radius: 6px;
+    min-width: 300px;
+    min-height: 168px;
+    max-width: 300px;
+    max-height: 168px;
+}
+.movie-card__img-container {
+    grid-area: img;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.movie-card__title {
+    margin: 0;
+    grid-area: title;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.movie-card__caption {
+    grid-area: caption;
+    color: #A0A0A0;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 10px;
+    border-radius: 3px;
+    background: #F9F9F9;
+    padding: 3px 4px;
+    box-sizing: border-box;
+    margin: 0;
+    max-height: 18px;
+    max-width: 50px;
+    justify-self: end;
+}
+
+.movie-card__btn {
+    position: absolute;
+    border: none;
+    top: 8px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    transition: scale .2s;
+}
+.movie-card__btn:hover {
+    transform: scale(1.1);
+}
+
+.movie-card__btn_style_save {
+    color: #000;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    border-radius: 30px;
+    background: #F9F9F9;
+    padding: 6px 9px;
+    line-height: 9px;
+}
+
+.movie-card__btn_style_saved {
+    background: url("../../images/saved.svg");
+    width: 21px;
+    height: 21px;
+}
+
+.movie-card__btn_style_remove {
+    background: url("../../images/remove.svg");
+    width: 21px;
+    height: 21px;
+}
+
+@media (min-width: 768px) {
+    .movie-card {
+        padding: 28px 0 0;
+        max-width: 768px;
+        gap: 25px 12px;
+    }
+
+    .movie-card__img {
+        min-width: 340px;
+        min-height: 190px;
+    }
+
+    .movie-card__title {
+        font-size: 13px;
+    }
+
+    .movie-card__btn {
+        top: 14px;
+        right: 14px;
+    }
+}
+@media (min-width: 1200px) {
+    .movie-card {
+        padding: 43px 0 0;
+    }
+    .movie-card {
+        gap: 12px 12px;
+    }
+    .movie-card__title {
+        font-size: 14px;
+        margin-left: 14px;
+    }
+    .movie-card__caption {
+        margin-right: 14px;
+    }
+    .movie-card__img {
+        min-width: 360px;
+        width: 360px;
+        min-height: 201px;
+    }
+}
+

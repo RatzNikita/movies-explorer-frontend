@@ -1,0 +1,124 @@
+.about-project {
+    color: #000;
+    padding: 14px 18px 0;
+}
+.about-project__info-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.about-project__info-heading {
+    padding: 58px 0 14px;
+}
+.about-project__block {
+    margin: 60px 0;
+    display: inline-block;
+    max-width: 100%;
+}
+.about-project__blocks {
+    display: grid;
+    grid-template-columns: 20fr 80fr;
+}
+.about-project__block_size_big {
+    min-width: 184px;
+}
+.about-project__block_size_medium {
+    min-width: 100px;
+}
+
+.about-project__figure {
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+}
+
+.about-project__figure_color_white {
+    min-width: 184px;
+    background-color: #F2F2F2;
+    color: black;
+}
+
+.about-project__figure_color_black {
+    min-width: 100px;
+    color: white;
+    background-color: black;
+}
+
+.about-project__figure-caption {
+    color: #A0A0A0;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 10px 0;
+}
+
+@media (min-width: 768px) {
+    .about-project {
+        padding: 34px 50px 20px;
+    }
+    .about-project__info-container {
+        flex-direction: row;
+        gap: 30px;
+    }
+    .about-project__figure {
+        font-size: 14px;
+    }
+    .about-project__block {
+        margin-top: 80px;
+    }
+    .about-project__block_size_medium {
+        min-width: 140px;
+    }
+    .about-project__block_size_big {
+        min-width: 528px;
+    }
+    .about-project__figure-caption{
+        line-height: 17px;
+        font-size: 14px;
+    }
+    .about-project__info-heading {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.8px;
+        padding-bottom: 12px;
+    }
+}
+@media (min-width: 1280px) {
+    .about-project {
+        padding: 54px 70px 40px;
+    }
+    .about-project__block {
+        margin-top: 110px
+    }
+    .about-project__figure_color_black {
+        width: 227px;
+    }
+    .about-project__figure_color_white {
+        width: 913px;
+    }
+    .about-project__info-container {
+        display: grid;
+        grid-template-columns: repeat(2,550px);
+        gap: 40px;
+    }
+    .about-project__text {
+        margin: 14px 0 0 0;
+        width: 100%;
+        text-align: start;
+        max-width: none;
+    }
+    .about-project__info-item {
+        width: 550px;
+    }
+    .about-project__figure-caption {
+        padding-top: 14px;
+    }
+}

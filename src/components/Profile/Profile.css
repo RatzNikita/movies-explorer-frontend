@@ -1,0 +1,139 @@
+.profile {
+    width: 320px;
+    height: 780px;
+    display: flex;
+    flex-direction: column;
+    padding: 45px 30px 40px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.profile__greeting {
+    margin: 0;
+    padding: 0 0 80px;
+    color: #000;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.profile__text-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile__text {
+    display: block;
+    color: #000;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.profile__input {
+    display: block;
+    color: #3456F3;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    text-align: right;
+}
+
+.profile__divider {
+    margin: 17px 0;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+.profile__buttons-container {
+    margin: 210px 0 0;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.profile__button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #000;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    transition: opacity .2s;
+    cursor: pointer;
+}
+.profile__button:disabled {
+    cursor: default;
+    color: #A0A0A0;
+}
+.profile__button:disabled:hover {
+    opacity: 1;
+}
+.profile__button:hover {
+    opacity: 0.7;
+}
+
+.profile__button_color_red {
+    color: #FF4062;
+}
+
+.profile__message {
+    visibility: hidden;
+    color: #FF4062;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+    padding: 10px 0 0 0;
+    min-height: 25px;
+    max-height: 25px;
+    justify-self: end;
+}
+
+.profile__message_visible {
+    visibility: visible;
+}
+.profile__message_type_success {
+    color: #08ab34;
+}
+
+
+@media (min-width: 768px) {
+    .profile {
+        width: 768px;
+        height: 950px;
+        padding: 211px 179px 269px;
+    }
+    .profile__greeting {
+        margin: 0;
+        padding: 0 0 96px;
+    }
+    .profile__button {
+        font-size: 13px;
+    }
+}
+@media (min-width: 1280px) {
+    .profile {
+        width: 1280px;
+        height: 700px;
+        padding: 49px 435px 70px;
+    }
+    .profile__greeting {
+        margin: 0;
+        padding: 0 0 123px;
+    }
+    .profile__buttons-container {
+        margin: 220px 0 0;
+    }
+}
+
